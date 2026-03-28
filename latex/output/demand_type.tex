@@ -1,0 +1,85 @@
+\begin{table*}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}l|l|cccc|ccc|ccc|c@{}}
+\toprule
+\multirow{3}{*}{\textbf{Model}} & \multirow{3}{*}{\textbf{Demand}} &
+\multicolumn{4}{c|}{\textbf{Work}} &
+\multicolumn{3}{c|}{\textbf{Learning}} &
+\multicolumn{3}{c|}{\textbf{Daily}} &
+\multirow{3}{*}{\textbf{Overall}} \\
+\cmidrule(lr){3-6} \cmidrule(lr){7-9} \cmidrule(lr){10-12}
+& & \footnotesize Business & \footnotesize Product & \footnotesize Tech & \footnotesize Work & \footnotesize STEM & \footnotesize Program. & \footnotesize Human. & \footnotesize Personal & \footnotesize Tools \& & \footnotesize Content & \\
+& & \footnotesize Metrics & \footnotesize Strategy & \footnotesize Engineer. & \footnotesize Collab. & \footnotesize Lecture & \footnotesize Tutorial & \footnotesize Business & \footnotesize Life & \footnotesize Workflow & \footnotesize Knowl. & \\
+\midrule
+
+\multirow{3}{*}{GPT-5-Mini}
+& Req.        & 72.9   & 71.6   & 71.0   & 66.9   & \textbf{100.0}   & 49.1   & 33.3   & 60.7   & 67.8   & 47.8   & 64.1 \\
+& Ins.        & 65.9   & 60.3   & 83.3   & 63.5   & 75.6   & 70.5   & 70.7   & 65.1   & 64.0   & 46.4   & 66.5 \\
+& \grayrow{Avg.} & \grayrow{69.4}   & \grayrow{65.9}   & \grayrow{77.2}   & \grayrow{65.2}   & \grayrow{\textbf{87.8}}   & \grayrow{59.8}   & \grayrow{52.0}   & \grayrow{62.9}   & \grayrow{65.9}   & \grayrow{47.1}   & \grayrow{65.3} \\
+\midrule
+
+\multirow{3}{*}{GPT-5-Nano}
+& Req.        & \textit{80.5}   & 87.0   & \textbf{88.9}   & \textit{76.2}   & 68.8   & 50.9   & 33.3   & \textit{80.4}   & 77.6   & 60.9   & 70.5 \\
+& Ins.        & \textit{80.5}   & \textit{88.9}   & \textit{86.1}   & 79.4   & 56.7   & 55.7   & 52.2   & 75.6   & 56.0   & 63.6   & 69.5 \\
+& \grayrow{Avg.} & \grayrow{80.5}   & \grayrow{\textit{88.0}}   & \grayrow{\textbf{87.5}}   & \grayrow{77.8}   & \grayrow{62.8}   & \grayrow{53.3}   & \grayrow{42.8}   & \grayrow{\textit{78.0}}   & \grayrow{66.8}   & \grayrow{62.2}   & \grayrow{70.0} \\
+\midrule
+
+\multirow{3}{*}{GPT-oss-120b}
+& Req.        & 66.9   & 63.3   & 59.9   & 61.5   & 50.0   & 60.0   & 66.7   & 50.0   & 47.6   & 47.8   & 57.4 \\
+& Ins.        & 73.2   & 58.7   & 66.7   & 50.8   & 57.5   & 72.1   & 50.0   & 48.8   & 80.0   & 45.5   & 60.3 \\
+& \grayrow{Avg.} & \grayrow{70.1}   & \grayrow{61.0}   & \grayrow{63.3}   & \grayrow{56.1}   & \grayrow{53.8}   & \grayrow{66.0}   & \grayrow{58.4}   & \grayrow{49.4}   & \grayrow{63.8}   & \grayrow{46.6}   & \grayrow{58.9} \\
+\midrule
+
+\multirow{3}{*}{Gemini-3-Flash}
+& Req.        & \textbf{88.1}   & \textbf{89.3}   & \textit{87.7}   & 76.2   & 75.0   & \textbf{87.3}   & 100.0   & 69.6   & \textbf{90.2}   & \textit{65.2}   & \textit{82.9} \\
+& Ins.        & 78.0   & \textbf{93.7}   & 80.6   & \textbf{84.1}   & \textit{84.3}   & \textbf{91.8}   & \textbf{88.0}   & \textit{80.2}   & \textbf{88.0}   & \textit{64.5}   & \textit{83.3} \\
+& \grayrow{Avg.} & \grayrow{\textbf{83.0}}   & \grayrow{\textbf{91.5}}   & \grayrow{84.2}   & \grayrow{\textbf{80.2}}   & \grayrow{79.7}   & \grayrow{\textbf{89.5}}   & \grayrow{\textbf{94.0}}   & \grayrow{74.9}   & \grayrow{\textbf{89.1}}   & \grayrow{\textit{64.8}}   & \grayrow{\textit{83.1}} \\
+\midrule
+
+\multirow{3}{*}{Gemini-2.5-Flash-Lite}
+& Req.        & 14.4   & 30.2   & 16.7   & 15.4   & 0.0   & 12.7   & 0.0   & 28.6   & 25.9   & 0.0   & 14.4 \\
+& Ins.        & 26.8   & 30.2   & 8.3   & 20.6   & 17.3   & 23.0   & 12.0   & 26.7   & 44.0   & 9.1   & 21.8 \\
+& \grayrow{Avg.} & \grayrow{20.6}   & \grayrow{30.2}   & \grayrow{12.5}   & \grayrow{18.0}   & \grayrow{8.7}   & \grayrow{17.9}   & \grayrow{6.0}   & \grayrow{27.6}   & \grayrow{35.0}   & \grayrow{4.5}   & \grayrow{18.1} \\
+\midrule
+
+\multirow{3}{*}{Claude-Haiku-4.5}
+& Req.        & 57.6   & 55.3   & 56.8   & 42.3   & 12.5   & 30.9   & 0.0   & 26.8   & 40.6   & 13.0   & 33.6 \\
+& Ins.        & 78.0   & 63.5   & 50.0   & 50.8   & 22.8   & 47.5   & 16.3   & 36.0   & 16.0   & 25.5   & 40.6 \\
+& \grayrow{Avg.} & \grayrow{67.8}   & \grayrow{59.4}   & \grayrow{53.4}   & \grayrow{46.5}   & \grayrow{17.6}   & \grayrow{39.2}   & \grayrow{8.2}   & \grayrow{31.4}   & \grayrow{28.3}   & \grayrow{19.2}   & \grayrow{37.1} \\
+\midrule
+
+\multirow{3}{*}{DeepSeek-V3.2}
+& Req.        & 46.6   & 43.3   & 37.0   & 39.2   & 12.5   & 5.5   & 0.0   & 62.5   & 51.7   & 17.4   & 31.6 \\
+& Ins.        & 39.0   & 39.7   & 19.4   & 25.4   & 6.3   & 29.5   & 13.0   & 47.7   & 68.0   & 23.6   & 31.2 \\
+& \grayrow{Avg.} & \grayrow{42.8}   & \grayrow{41.5}   & \grayrow{28.2}   & \grayrow{32.3}   & \grayrow{9.4}   & \grayrow{17.5}   & \grayrow{6.5}   & \grayrow{55.1}   & \grayrow{59.9}   & \grayrow{20.5}   & \grayrow{31.4} \\
+\midrule
+
+\multirow{3}{*}{Qwen3.5-Flash}
+& Req.        & 33.1   & 34.4   & 23.5   & 19.2   & 43.8   & 32.7   & \textbf{100.0}   & 25.0   & 28.7   & 23.9   & 36.4 \\
+& Ins.        & 39.0   & 23.8   & 22.2   & 22.2   & 29.1   & 31.1   & 27.2   & 32.6   & 28.0   & 33.6   & 28.9 \\
+& \grayrow{Avg.} & \grayrow{36.0}   & \grayrow{29.1}   & \grayrow{22.9}   & \grayrow{20.7}   & \grayrow{36.5}   & \grayrow{31.9}   & \grayrow{63.6}   & \grayrow{28.8}   & \grayrow{28.4}   & \grayrow{28.8}   & \grayrow{32.7} \\
+\midrule
+
+\multirow{3}{*}{Qwen3-30B-A3B}
+& Req.        & 16.9   & 29.8   & 51.9   & 24.6   & 6.2   & 40.0   & 0.0   & 30.4   & 54.5   & 26.1   & 28.0 \\
+& Ins.        & 9.8   & 27.0   & 50.0   & 33.3   & 21.3   & 45.9   & 8.7   & 20.9   & 48.0   & 11.8   & 27.7 \\
+& \grayrow{Avg.} & \grayrow{13.3}   & \grayrow{28.4}   & \grayrow{51.0}   & \grayrow{28.9}   & \grayrow{13.8}   & \grayrow{43.0}   & \grayrow{4.3}   & \grayrow{25.6}   & \grayrow{51.2}   & \grayrow{19.0}   & \grayrow{27.9} \\
+\midrule
+
+\multirow{3}{*}{\textbf{IntentFlow}}
+& Req.        & 78.0   & \textit{87.0}   & 85.2   & \textbf{76.9}   & \textit{81.2}   & \textit{85.5}   & \textit{100.0}   & \textbf{82.1}   & \textit{86.0}   & \textbf{78.3}   & \textbf{84.0} \\
+& Ins.        & \textbf{82.9}   & 82.5   & \textbf{86.1}   & \textit{82.5}   & \textbf{85.8}   & \textit{86.9}   & \textit{85.9}   & \textbf{82.6}   & \textit{84.0}   & \textbf{74.5}   & \textbf{83.4} \\
+& \grayrow{Avg.} & \grayrow{\textit{80.5}}   & \grayrow{84.8}   & \grayrow{\textit{85.7}}   & \grayrow{\textit{79.7}}   & \grayrow{\textit{83.5}}   & \grayrow{\textit{86.2}}   & \grayrow{\textit{93.0}}   & \grayrow{\textbf{82.3}}   & \grayrow{\textit{85.0}}   & \grayrow{\textbf{76.4}}   & \grayrow{\textbf{83.7}} \\
+
+\bottomrule
+\end{tabular}%
+}
+\caption{Performance by demand type on the \textsc{IntentFlow} benchmark.
+Each cell reports the turn-level accuracy score (0--100) on demand turns only.
+\textit{Req.} = Requirement-type demands (decision support, task planning, problem solving, summarization, information lookup);
+\textit{Ins.} = Insight-type demands (risk warning, knowledge gap, callback reminder, context synthesis, trend insight, sentiment analysis).
+\textbf{Bold} = best per column; \textit{Italic} = second best.}
+\label{tab:demand_type}
+\end{table*}

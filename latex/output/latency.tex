@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}l|r|rr|rr|rr@{}}
+\toprule
+\textbf{Model} & \textbf{Cost(\$)} & \textbf{Avg(ms)} & \textbf{P95(ms)} & \textbf{In-Tok(K)} & \textbf{Out-Tok(K)} & \textbf{\$/M-in} & \textbf{\$/M-out} \\
+\midrule
+GPT-5-Mini & 5.650 & 8,079 & 22,535 & 5970 & 2079 & 0.250 & 2.000 \\
+GPT-5-Nano & \textit{1.170} & 6,593 & 13,924 & 6080 & 2164 & 0.050 & 0.400 \\
+GPT-oss-120b & 0.000 & 7,604 & 28,015 & 6247 & 1135 & 0.000 & 0.000 \\
+Gemini-3-Flash & 5.354 & 3,918 & 6,105 & 5731 & 829 & 0.500 & 3.000 \\
+Gemini-2.5-Flash-Lite & \textbf{0.727} & 2,290 & 6,161 & 5779 & 373 & 0.100 & 0.400 \\
+Claude-Haiku-4.5 & 11.083 & 3,585 & 7,626 & 8066 & 603 & 1.000 & 5.000 \\
+DeepSeek-V3.2 & 1.328 & 3,398 & 8,190 & 5042 & 169 & 0.250 & 0.400 \\
+Qwen3.5-Flash & 4.385 & 17,421 & 49,283 & 5389 & 9615 & 0.100 & 0.400 \\
+Qwen3-30B-A3B & 0.000 & \textbf{1,174} & \textit{4,214} & 5657 & 704 & 0.000 & 0.000 \\
+\textbf{IntentFlow} & 0.000 & \textit{1,401} & \textbf{1,801} & 3211 & 232 & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Cost and latency comparison across models on the full benchmark.
+Cost is computed from per-token pricing.
+\textbf{Bold} = best (lowest); \textit{Italic} = second best.}
+\label{tab:latency}
+\end{table}

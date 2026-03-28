@@ -1,0 +1,90 @@
+\begin{table*}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}l|l|cccc|ccc|ccc|c@{}}
+\toprule
+\multirow{3}{*}{\textbf{Model}} & \multirow{3}{*}{\textbf{Type}} &
+\multicolumn{4}{c|}{\textbf{Work}} &
+\multicolumn{3}{c|}{\textbf{Learning}} &
+\multicolumn{3}{c|}{\textbf{Daily}} &
+\multirow{3}{*}{\textbf{Overall}} \\
+\cmidrule(lr){3-6} \cmidrule(lr){7-9} \cmidrule(lr){10-12}
+& & \footnotesize Business & \footnotesize Product & \footnotesize Tech & \footnotesize Work & \footnotesize STEM & \footnotesize Program. & \footnotesize Human. & \footnotesize Personal & \footnotesize Tools \& & \footnotesize Content & \\
+& & \footnotesize Metrics & \footnotesize Strategy & \footnotesize Engineer. & \footnotesize Collab. & \footnotesize Lecture & \footnotesize Tutorial & \footnotesize Business & \footnotesize Life & \footnotesize Workflow & \footnotesize Knowl. & \\
+\midrule
+
+\multirow{3}{*}{GPT-5-Mini}
+& Demand.    & 71.1   & 69.1   & 73.2   & 65.8   & 78.3   & 60.3   & 69.5   & 63.4   & 67.3   & 46.5   & 66.5 \\
+& No-Dem.    & 88.8   & 92.5   & 83.7   & 76.8   & 79.2   & 91.2   & 91.7   & 91.2   & 93.8   & 90.6   & 88.0 \\
+& \grayrow{Avg.} & \grayrow{\textit{79.9}}   & \grayrow{80.8}   & \grayrow{78.5}   & \grayrow{71.3}   & \grayrow{78.8}   & \grayrow{75.8}   & \grayrow{80.6}   & \grayrow{77.3}   & \grayrow{80.5}   & \grayrow{68.5}   & \grayrow{77.2} \\
+\midrule
+
+\multirow{3}{*}{GPT-5-Nano}
+& Demand.    & \textit{80.5}   & \textit{87.4}   & \textbf{88.4}   & 77.2   & 58.0   & 53.4   & 51.6   & \textit{77.5}   & 74.4   & 63.1   & 71.2 \\
+& No-Dem.    & 52.7   & 70.3   & 65.7   & 50.5   & 82.5   & 89.4   & 87.7   & 74.7   & 75.2   & 69.6   & 71.8 \\
+& \grayrow{Avg.} & \grayrow{66.6}   & \grayrow{78.8}   & \grayrow{77.1}   & \grayrow{63.9}   & \grayrow{70.2}   & \grayrow{71.4}   & \grayrow{69.7}   & \grayrow{76.1}   & \grayrow{74.8}   & \grayrow{66.3}   & \grayrow{71.5} \\
+\midrule
+
+\multirow{3}{*}{GPT-oss-120b}
+& Demand.    & 68.6   & 62.2   & 61.1   & 58.0   & 56.6   & 66.4   & 50.5   & 49.3   & 52.4   & 45.9   & 57.1 \\
+& No-Dem.    & 81.9   & 89.5   & 77.3   & 75.0   & 80.9   & 78.8   & 86.7   & 88.5   & 86.2   & 89.6   & 83.4 \\
+& \grayrow{Avg.} & \grayrow{75.2}   & \grayrow{75.8}   & \grayrow{69.2}   & \grayrow{66.5}   & \grayrow{68.8}   & \grayrow{72.6}   & \grayrow{68.6}   & \grayrow{68.9}   & \grayrow{69.3}   & \grayrow{67.8}   & \grayrow{70.3} \\
+\midrule
+
+\multirow{3}{*}{Gemini-3-Flash}
+& Demand.    & \textbf{85.5}   & \textbf{90.3}   & \textit{86.4}   & \textit{78.8}   & \textit{83.2}   & \textbf{89.7}   & \textbf{88.4}   & 76.1   & \textbf{89.9}   & \textit{65.0}   & \textbf{83.3} \\
+& No-Dem.    & 63.9   & 79.9   & 84.9   & 67.3   & 84.7   & 86.2   & 81.3   & 79.7   & 80.5   & 74.8   & 78.3 \\
+& \grayrow{Avg.} & \grayrow{74.7}   & \grayrow{\textit{85.1}}   & \grayrow{\textit{85.7}}   & \grayrow{\textit{73.0}}   & \grayrow{\textit{84.0}}   & \grayrow{\textit{88.0}}   & \grayrow{\textit{84.8}}   & \grayrow{\textit{77.9}}   & \grayrow{\textit{85.2}}   & \grayrow{\textit{69.9}}   & \grayrow{\textit{80.8}} \\
+\midrule
+
+\multirow{3}{*}{Gemini-2.5-Flash-Lite}
+& Demand.    & 17.6   & 30.2   & 15.2   & 17.1   & 15.4   & 18.1   & 11.6   & 27.5   & 28.6   & 6.4   & 18.8 \\
+& No-Dem.    & 81.2   & 80.8   & 80.8   & 85.0   & 90.2   & 87.5   & 92.3   & 90.8   & 81.9   & 83.8   & 85.4 \\
+& \grayrow{Avg.} & \grayrow{49.4}   & \grayrow{55.5}   & \grayrow{48.0}   & \grayrow{51.0}   & \grayrow{52.8}   & \grayrow{52.8}   & \grayrow{51.9}   & \grayrow{59.1}   & \grayrow{55.2}   & \grayrow{45.1}   & \grayrow{52.1} \\
+\midrule
+
+\multirow{3}{*}{Claude-Haiku-4.5}
+& Demand.    & 62.9   & 57.2   & 55.6   & 45.1   & 21.7   & 39.7   & 15.8   & 32.4   & 36.9   & 21.7   & 38.9 \\
+& No-Dem.    & 78.0   & \textit{93.7}   & 90.1   & \textit{88.2}   & 95.6   & \textit{96.9}   & \textbf{99.3}   & \textbf{95.4}   & \textbf{99.0}   & \textbf{98.1}   & \textbf{93.4} \\
+& \grayrow{Avg.} & \grayrow{70.5}   & \grayrow{75.5}   & \grayrow{72.8}   & \grayrow{66.7}   & \grayrow{58.6}   & \grayrow{68.3}   & \grayrow{57.5}   & \grayrow{63.9}   & \grayrow{68.0}   & \grayrow{59.9}   & \grayrow{66.2} \\
+\midrule
+
+\multirow{3}{*}{DeepSeek-V3.2}
+& Demand.    & 44.7   & 42.4   & 33.8   & 34.7   & 7.0   & 18.1   & 12.6   & 53.5   & 54.2   & 21.7   & 32.3 \\
+& No-Dem.    & 76.2   & 90.4   & \textit{90.7}   & 85.5   & \textbf{100.0}   & \textbf{96.9}   & \textit{97.3}   & 88.5   & 88.1   & \textit{95.5}   & 90.9 \\
+& \grayrow{Avg.} & \grayrow{60.5}   & \grayrow{66.4}   & \grayrow{62.2}   & \grayrow{60.1}   & \grayrow{53.5}   & \grayrow{57.5}   & \grayrow{54.9}   & \grayrow{71.0}   & \grayrow{71.2}   & \grayrow{58.6}   & \grayrow{61.6} \\
+\midrule
+
+\multirow{3}{*}{Qwen3.5-Flash}
+& Demand.    & 34.6   & 32.0   & 23.2   & 20.2   & 30.8   & 31.9   & 29.5   & 29.6   & 28.6   & 30.6   & 29.1 \\
+& No-Dem.    & \textbf{92.8}   & \textbf{94.1}   & \textbf{93.0}   & \textbf{92.7}   & 91.3   & 95.0   & 96.3   & 92.2   & \textit{94.3}   & 89.0   & \textit{93.1} \\
+& \grayrow{Avg.} & \grayrow{63.7}   & \grayrow{63.0}   & \grayrow{58.1}   & \grayrow{56.5}   & \grayrow{61.0}   & \grayrow{63.5}   & \grayrow{62.9}   & \grayrow{60.9}   & \grayrow{61.5}   & \grayrow{59.8}   & \grayrow{61.1} \\
+\midrule
+
+\multirow{3}{*}{Qwen3-30B-A3B}
+& Demand.    & 15.1   & 29.1   & 51.5   & 27.5   & 19.6   & 43.1   & 8.4   & 24.6   & 53.6   & 15.9   & 28.8 \\
+& No-Dem.    & \textit{89.5}   & 92.5   & 77.9   & 86.4   & \textit{96.2}   & 78.1   & 97.0   & \textit{94.5}   & 87.6   & 89.0   & 88.9 \\
+& \grayrow{Avg.} & \grayrow{52.3}   & \grayrow{60.8}   & \grayrow{64.7}   & \grayrow{57.0}   & \grayrow{57.9}   & \grayrow{60.6}   & \grayrow{52.7}   & \grayrow{59.5}   & \grayrow{70.6}   & \grayrow{52.5}   & \grayrow{58.9} \\
+\midrule
+
+\multirow{3}{*}{\textbf{IntentFlow}}
+& Demand.    & 79.2   & 86.0   & 85.4   & \textbf{78.8}   & \textbf{85.3}   & \textit{86.2}   & \textit{86.3}   & \textbf{82.4}   & \textit{85.7}   & \textbf{75.8}   & \textit{83.1} \\
+& No-Dem.    & 81.9   & 88.3   & 88.4   & 80.0   & 86.9   & 90.0   & 86.7   & 84.8   & 87.1   & 78.3   & 85.2 \\
+& \grayrow{Avg.} & \grayrow{\textbf{80.6}}   & \grayrow{\textbf{87.2}}   & \grayrow{\textbf{86.9}}   & \grayrow{\textbf{79.4}}   & \grayrow{\textbf{86.1}}   & \grayrow{\textbf{88.1}}   & \grayrow{\textbf{86.5}}   & \grayrow{\textbf{83.6}}   & \grayrow{\textbf{86.4}}   & \grayrow{\textbf{77.0}}   & \grayrow{\textbf{84.2}} \\
+
+\bottomrule
+\end{tabular}%
+}
+\caption{Main results on the \textsc{IntentFlow} Proactive Demand Detection Benchmark.
+Each cell reports the turn-level accuracy score (0--100).
+\textit{Demand} = accuracy on demand turns;
+\textit{No-Dem.} = accuracy on non-demand turns;
+\textit{Avg.} = balanced average (1:1 demand/non-demand).
+Columns are grouped by domain:
+\textbf{Work} (Business Metrics, Product Strategy, Tech Engineer., Work Collab.),
+\textbf{Learning} (STEM Lecture, Program.\ Tutorial, Human.\ Business),
+\textbf{Daily} (Personal Life, Tools \& Workflow, Content \& Knowl.).
+\textbf{Bold} = best per column; \textit{Italic} = second best.}
+\label{tab:main_results}
+\end{table*}

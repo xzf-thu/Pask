@@ -1,0 +1,28 @@
+# Data files (too large for git)
+raw_new.jsonl
+data/
+
+# Bench intermediate data (keep only final outputs)
+bench/data/01_*.jsonl
+bench/data/02_*.jsonl
+bench/data/03_annotated.jsonl
+bench/data/03_test_meta.jsonl
+bench/data/03a_*.jsonl
+bench/data/03b_*.jsonl
+bench/data/03c_*.jsonl
+bench/data/taxonomy_new.json
+
+# Legacy / backup dirs
+eval/legacy/
+eval/results_calibration/
+latex/legacy-figure/
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Claude
+.claude/

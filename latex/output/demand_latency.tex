@@ -1,0 +1,44 @@
+\begin{table*}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\resizebox{0.99\linewidth}{!}{%
+\begin{tabular}{@{}l|ccc|ccc|ccc|ccc|ccc@{}}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multicolumn{15}{c}{\textbf{Per-Turn Latency (ms)}} \\
+\cmidrule(lr){2-16}
+& \multicolumn{3}{c|}{$T$=1--12} & \multicolumn{3}{c|}{$T$=13--24} & \multicolumn{3}{c|}{$T$=25--36} & \multicolumn{3}{c|}{$T$=37--48} & \multicolumn{3}{c}{$T$=49--60} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} \cmidrule(lr){11-13} \cmidrule(lr){14-16}
+& \footnotesize Dem. & \footnotesize N-D. & \footnotesize Avg. & \footnotesize Dem. & \footnotesize N-D. & \footnotesize Avg. & \footnotesize Dem. & \footnotesize N-D. & \footnotesize Avg. & \footnotesize Dem. & \footnotesize N-D. & \footnotesize Avg. & \footnotesize Dem. & \footnotesize N-D. & \footnotesize Avg. \\
+\midrule
+GPT-5-Mini & 10.4k & 6.7k & 8.1k & 10.2k & 7.1k & 8.4k & 9.9k & 7.3k & 8.4k & 9.3k & 6.4k & 7.6k & 8.6k & 5.8k & 7.1k \\
+\midrule
+GPT-5-Nano & 7.4k & 6.3k & 6.7k & 6.9k & 5.7k & 6.2k & 7.0k & 6.2k & 6.5k & 7.2k & 6.2k & 6.6k & 6.3k & 5.8k & 6.0k \\
+\midrule
+GPT-oss-120b & 7.7k & 6.3k & 6.8k & 8.3k & 6.6k & 7.3k & 9.1k & 8.4k & 8.7k & 7.9k & 6.8k & 7.3k & 8.6k & 7.4k & 8.0k \\
+\midrule
+Gemini-3-Flash & 3.6k & 3.0k & 3.2k & 3.9k & 3.7k & 3.8k & 4.3k & 4.1k & 4.2k & 4.3k & 4.3k & 4.3k & 4.4k & 4.3k & 4.4k \\
+\midrule
+Gemini-2.5-Flash-Lite & 2.8k & 2.2k & 2.4k & 2.3k & 2.4k & 2.4k & 2.3k & 2.3k & 2.3k & 2.2k & 2.1k & 2.2k & 2.0k & 1.9k & 1.9k \\
+\midrule
+Claude-Haiku-4.5 & 3.6k & 2.8k & 3.1k & 4.0k & 3.4k & 3.6k & 4.1k & 3.2k & 3.6k & 4.1k & 3.4k & 3.7k & 4.0k & 3.5k & 3.7k \\
+\midrule
+DeepSeek-V3.2 & 3.4k & 3.1k & 3.2k & 3.8k & 3.1k & 3.4k & 3.7k & 3.1k & 3.4k & 3.5k & 3.2k & 3.3k & 4.0k & 3.1k & 3.5k \\
+\midrule
+Qwen3.5-Flash & 16.1k & 15.7k & 15.9k & 16.6k & 19.9k & 18.6k & 16.7k & 18.7k & 17.8k & 16.4k & 17.8k & 17.2k & 16.4k & 17.8k & 17.2k \\
+\midrule
+Qwen3-30B-A3B & \textbf{1.4k} & \textbf{988} & \textbf{1.1k} & \textbf{1.4k} & \textbf{1.1k} & \textbf{1.2k} & \textbf{1.5k} & \textbf{1.2k} & \textbf{1.3k} & \textbf{1.2k} & \textbf{1.1k} & \textbf{1.1k} & \textbf{1.2k} & \textbf{873} & \textbf{1.0k} \\
+\midrule
+\textbf{IntentFlow} & \textit{1.6k} & \textit{1.2k} & \textit{1.3k} & \textit{1.6k} & \textit{1.2k} & \textit{1.4k} & \textit{1.7k} & \textit{1.2k} & \textit{1.4k} & \textit{1.7k} & \textit{1.3k} & \textit{1.5k} & \textit{1.8k} & \textit{1.3k} & \textit{1.5k} \\
+
+\bottomrule
+\end{tabular}%
+}
+\caption{Per-turn inference latency by conversation position.
+Turn positions are grouped into buckets of 12 consecutive turns ($T$).
+\textit{Dem.} = average latency on demand turns (model generates a response);
+\textit{N-D.} = average latency on non-demand turns (model outputs \texttt{[NO\_DEMAND]});
+\textit{Avg.} = overall average.
+Demand turns consistently incur higher latency due to longer generated outputs.
+\textbf{Bold} = fastest; \textit{Italic} = second fastest.}
+\label{tab:demand_latency}
+\end{table*}

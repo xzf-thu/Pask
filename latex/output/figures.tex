@@ -1,0 +1,12 @@
+% ── Figure 1: Multi-turn accuracy degradation ──────────────────────────────
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figure/multi_turn_combined.pdf}
+\caption{Balanced accuracy as a function of conversation depth.
+Turns are grouped into non-overlapping buckets of 4 consecutive turns (1--4, 5--8, \ldots, 57--60).
+\textbf{(a)}~Per-bucket accuracy: each point is the balanced average of demand recall and non-demand precision within that bucket alone, revealing local fluctuations.
+\textbf{(b)}~Cumulative accuracy: each point aggregates all turns from the start up to and including the current bucket, yielding a smoothed view of overall degradation.
+IntentFlow maintains $>$80\% balanced accuracy across all buckets, while the strongest baseline (Gemini-3-Flash) drops from 85.6 to 70.8 ($\Delta$=--17.3\%).}
+\label{fig:multi_turn_combined}
+\end{figure*}
+

@@ -1,0 +1,72 @@
+\begin{table*}[t]
+\centering
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}l|l|ccccccccccccccc|c@{}}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{Type}} & \multicolumn{15}{c|}{\textbf{Turn Position (bucket)}} & \multirow{2}{*}{$\Delta$(\%)} \\
+\cmidrule(lr){3-17}
+& & \footnotesize 1-4 & \footnotesize 5-8 & \footnotesize 9-12 & \footnotesize 13-16 & \footnotesize 17-20 & \footnotesize 21-24 & \footnotesize 25-28 & \footnotesize 29-32 & \footnotesize 33-36 & \footnotesize 37-40 & \footnotesize 41-44 & \footnotesize 45-48 & \footnotesize 49-52 & \footnotesize 53-56 & \footnotesize 57-60 & \\
+\midrule
+\multirow{3}{*}{GPT-5-Mini}
+& Demand. & 80.3 & 76.6 & 74.7 & 68.4 & 69.3 & 67.2 & 67.7 & 64.5 & 60.2 & 67.0 & 65.4 & 59.4 & 60.0 & 50.9 & 51.0 & -36.5 \\
+& No-Dem. & 93.1 & 92.7 & 86.3 & 87.9 & 82.8 & 90.5 & 84.2 & 85.5 & 89.1 & 87.2 & 83.6 & 91.4 & 86.7 & \textit{95.6} & 89.6 & -3.8 \\
+& \grayrow{Avg.} & \grayrow{\textbf{86.7}} & \grayrow{84.6} & \grayrow{80.5} & \grayrow{78.1} & \grayrow{76.0} & \grayrow{78.9} & \grayrow{76.0} & \grayrow{\textit{75.0}} & \grayrow{74.7} & \grayrow{\textit{77.1}} & \grayrow{74.5} & \grayrow{75.4} & \grayrow{73.4} & \grayrow{73.2} & \grayrow{70.3} & \grayrow{-19.0} \\
+\midrule
+\multirow{3}{*}{GPT-5-Nano}
+& Demand. & \textbf{88.6} & 78.6 & 82.0 & 80.9 & 67.5 & 69.0 & 66.1 & 69.1 & 71.0 & 75.5 & 66.7 & 76.8 & 70.8 & 75.4 & 60.8 & -31.4 \\
+& No-Dem. & 75.2 & 68.8 & 77.2 & 73.1 & 71.1 & 71.6 & 71.1 & 73.1 & 69.6 & 67.5 & 70.9 & 68.8 & 74.7 & 72.1 & 77.1 & \textbf{2.5} \\
+& \grayrow{Avg.} & \grayrow{81.9} & \grayrow{73.7} & \grayrow{79.6} & \grayrow{77.0} & \grayrow{69.3} & \grayrow{70.3} & \grayrow{68.6} & \grayrow{71.1} & \grayrow{70.3} & \grayrow{71.5} & \grayrow{68.8} & \grayrow{72.8} & \grayrow{72.7} & \grayrow{\textit{73.7}} & \grayrow{68.9} & \grayrow{-15.8} \\
+\midrule
+\multirow{3}{*}{GPT-oss-120b}
+& Demand. & 56.1 & 54.5 & 64.0 & 63.2 & 57.0 & 68.1 & 53.2 & 49.1 & 57.0 & 46.8 & 50.6 & 58.0 & 56.9 & 61.4 & 54.9 & \textbf{-2.1} \\
+& No-Dem. & 90.5 & 85.8 & 89.3 & 86.3 & 87.2 & 82.8 & 82.2 & 80.0 & 79.7 & 76.9 & 83.6 & 86.0 & 85.5 & 83.8 & 77.1 & -14.8 \\
+& \grayrow{Avg.} & \grayrow{73.3} & \grayrow{70.2} & \grayrow{76.7} & \grayrow{74.7} & \grayrow{72.1} & \grayrow{75.5} & \grayrow{67.7} & \grayrow{64.5} & \grayrow{68.3} & \grayrow{61.9} & \grayrow{67.1} & \grayrow{72.0} & \grayrow{71.2} & \grayrow{72.6} & \grayrow{66.0} & \grayrow{-9.9} \\
+\midrule
+\multirow{3}{*}{Gemini-3-Flash}
+& Demand. & 75.0 & \textit{85.1} & \textbf{92.7} & \textbf{89.7} & \textbf{87.7} & \textbf{86.2} & \textbf{85.5} & \textit{80.0} & \textbf{84.9} & \textbf{86.2} & \textbf{82.7} & \textbf{84.1} & \textbf{86.2} & \textit{77.2} & \textit{68.6} & -8.5 \\
+& No-Dem. & 96.2 & 93.1 & 85.8 & 84.1 & 77.8 & 75.1 & 75.7 & 69.7 & 65.2 & 67.5 & 66.4 & 75.3 & 69.9 & 69.1 & 72.9 & -24.2 \\
+& \grayrow{Avg.} & \grayrow{85.6} & \grayrow{\textbf{89.1}} & \grayrow{\textbf{89.2}} & \grayrow{\textbf{86.9}} & \grayrow{\textit{82.7}} & \grayrow{\textit{80.7}} & \grayrow{\textit{80.6}} & \grayrow{74.8} & \grayrow{\textit{75.1}} & \grayrow{76.8} & \grayrow{\textit{74.5}} & \grayrow{\textit{79.7}} & \grayrow{\textit{78.0}} & \grayrow{73.2} & \grayrow{\textit{70.8}} & \grayrow{-17.3} \\
+\midrule
+\multirow{3}{*}{Gemini-2.5-Flash-Lite}
+& Demand. & 30.3 & 30.5 & 28.0 & 21.3 & 21.1 & 19.0 & 15.3 & 17.3 & 8.6 & 22.3 & 17.3 & 17.4 & 15.4 & 8.8 & 7.8 & -74.1 \\
+& No-Dem. & 82.1 & 78.0 & 83.8 & 83.0 & 85.6 & 87.6 & 87.5 & 88.3 & 89.9 & 89.7 & \textit{90.0} & 91.4 & 90.4 & 86.8 & 89.6 & 9.2 \\
+& \grayrow{Avg.} & \grayrow{56.2} & \grayrow{54.3} & \grayrow{55.9} & \grayrow{52.1} & \grayrow{53.3} & \grayrow{53.3} & \grayrow{51.4} & \grayrow{52.8} & \grayrow{49.2} & \grayrow{56.0} & \grayrow{53.6} & \grayrow{54.4} & \grayrow{52.9} & \grayrow{47.8} & \grayrow{48.7} & \grayrow{-13.3} \\
+\midrule
+\multirow{3}{*}{Claude-Haiku-4.5}
+& Demand. & 27.3 & 42.2 & 44.0 & 41.9 & 43.0 & 48.3 & 41.1 & 45.5 & 39.8 & 37.2 & 48.1 & 42.0 & 44.6 & 42.1 & 25.5 & -6.5 \\
+& No-Dem. & \textbf{98.9} & \textbf{97.7} & \textit{96.4} & \textbf{96.7} & \textit{92.8} & \textbf{94.7} & \textbf{94.7} & 91.0 & \textit{92.8} & 86.3 & 89.1 & \textbf{95.7} & \textit{92.8} & 92.6 & \textit{95.8} & \textit{-3.1} \\
+& \grayrow{Avg.} & \grayrow{63.1} & \grayrow{70.0} & \grayrow{70.2} & \grayrow{69.3} & \grayrow{67.9} & \grayrow{71.5} & \grayrow{67.9} & \grayrow{68.2} & \grayrow{66.3} & \grayrow{61.8} & \grayrow{68.6} & \grayrow{68.9} & \grayrow{68.7} & \grayrow{67.4} & \grayrow{60.7} & \grayrow{\textit{-3.8}} \\
+\midrule
+\multirow{3}{*}{DeepSeek-V3.2}
+& Demand. & 33.3 & 34.4 & 36.7 & 31.6 & 40.4 & 38.8 & 35.5 & 32.7 & 33.3 & 25.5 & 29.6 & 30.4 & 35.4 & 33.3 & 35.3 & 5.9 \\
+& No-Dem. & 92.4 & 90.8 & 92.9 & 92.9 & \textbf{92.8} & \textit{93.5} & 92.1 & \textbf{93.1} & 88.4 & 85.5 & 88.2 & 91.4 & 91.6 & 91.2 & \textbf{95.8} & 3.8 \\
+& \grayrow{Avg.} & \grayrow{62.8} & \grayrow{62.6} & \grayrow{64.8} & \grayrow{62.2} & \grayrow{66.6} & \grayrow{66.1} & \grayrow{63.8} & \grayrow{62.9} & \grayrow{60.9} & \grayrow{55.5} & \grayrow{58.9} & \grayrow{60.9} & \grayrow{63.5} & \grayrow{62.3} & \grayrow{65.6} & \grayrow{4.3} \\
+\midrule
+\multirow{3}{*}{Qwen3.5-Flash}
+& Demand. & 20.5 & 28.6 & 24.7 & 26.5 & 33.3 & 25.0 & 28.2 & 22.7 & 24.7 & 28.7 & 39.5 & 29.0 & 30.8 & 31.6 & 33.3 & 63.0 \\
+& No-Dem. & \textit{98.5} & \textit{97.2} & \textbf{97.0} & \textit{94.0} & 91.1 & 91.1 & 92.1 & 89.7 & 87.7 & \textbf{91.5} & 87.3 & \textit{91.4} & \textbf{94.0} & \textbf{95.6} & 89.6 & -9.0 \\
+& \grayrow{Avg.} & \grayrow{59.5} & \grayrow{62.9} & \grayrow{60.8} & \grayrow{60.2} & \grayrow{62.2} & \grayrow{58.1} & \grayrow{60.2} & \grayrow{56.2} & \grayrow{56.2} & \grayrow{60.1} & \grayrow{63.4} & \grayrow{60.2} & \grayrow{62.4} & \grayrow{63.6} & \grayrow{61.5} & \grayrow{\textbf{3.4}} \\
+\midrule
+\multirow{3}{*}{Qwen3-30B-A3B}
+& Demand. & 41.7 & 43.5 & 39.3 & 35.3 & 27.2 & 31.9 & 27.4 & 27.3 & 25.8 & 23.4 & 30.9 & 21.7 & 24.6 & 19.3 & 17.6 & -57.6 \\
+& No-Dem. & 85.1 & 83.5 & 86.3 & 88.5 & 91.7 & 87.6 & \textit{92.8} & \textit{92.4} & \textbf{92.8} & \textit{90.6} & \textbf{97.3} & 91.4 & 88.0 & 88.2 & 89.6 & 5.3 \\
+& \grayrow{Avg.} & \grayrow{63.4} & \grayrow{63.5} & \grayrow{62.8} & \grayrow{61.9} & \grayrow{59.4} & \grayrow{59.7} & \grayrow{60.1} & \grayrow{59.8} & \grayrow{59.3} & \grayrow{57.0} & \grayrow{64.1} & \grayrow{56.6} & \grayrow{56.3} & \grayrow{53.8} & \grayrow{53.6} & \grayrow{-15.4} \\
+\midrule
+\multirow{3}{*}{\textbf{IntentFlow}}
+& Demand. & \textit{85.6} & \textbf{85.7} & \textit{84.7} & \textit{83.8} & \textit{84.2} & \textit{81.9} & \textit{82.3} & \textbf{81.8} & \textit{82.8} & \textit{83.0} & \textit{81.5} & \textit{82.6} & \textit{80.0} & \textbf{80.7} & \textbf{82.4} & \textit{-3.8} \\
+& No-Dem. & 86.6 & 86.2 & 85.3 & 86.3 & 84.4 & 85.8 & 83.6 & 85.5 & 84.8 & 83.8 & 84.5 & 81.7 & 83.1 & 80.9 & 81.2 & -6.2 \\
+& \grayrow{Avg.} & \grayrow{\textit{86.1}} & \grayrow{\textit{86.0}} & \grayrow{\textit{85.0}} & \grayrow{\textit{85.0}} & \grayrow{\textbf{84.3}} & \grayrow{\textbf{83.8}} & \grayrow{\textbf{82.9}} & \grayrow{\textbf{83.7}} & \grayrow{\textbf{83.8}} & \grayrow{\textbf{83.4}} & \grayrow{\textbf{83.0}} & \grayrow{\textbf{82.2}} & \grayrow{\textbf{81.6}} & \grayrow{\textbf{80.8}} & \grayrow{\textbf{81.8}} & \grayrow{-5.0} \\
+
+\bottomrule
+\end{tabular}%
+}
+\caption{Per-turn-bucket performance under the multi-turn setting.
+Turn positions are grouped into buckets of 4 consecutive turns.
+\textit{Demand} = accuracy on demand turns;
+\textit{No-Dem.} = accuracy on non-demand turns;
+\textit{Avg.} = balanced average.
+$\Delta$(\%) = relative change from first to last bucket.
+\textbf{Bold} = best per column; \textit{Italic} = second best.}
+\label{tab:turn_degradation}
+\end{table*}
