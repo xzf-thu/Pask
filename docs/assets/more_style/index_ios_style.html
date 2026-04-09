@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pask - Toward Intent-Aware Proactive Agents with Long-Term Memory</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700&display=swap');
+
+  :root {
+    --bg: #f7f7fb;
+    --surface: rgba(255,255,255,0.78);
+    --surface-strong: rgba(255,255,255,0.92);
+    --text: #0F1419;
+    --muted: rgba(15,20,25,0.58);
+    --line: rgba(109, 63, 225, 0.12);
+    --line-soft: rgba(15, 20, 25, 0.08);
+    --purple-1: #7c5cff;
+    --purple-2: #6D3FE1;
+    --purple-3: #a688f0;
+    --blue-1: #4aa6ff;
+    --blue-2: #1b66ff;
+    --cyan-1: #73d9ff;
+    --nav-h: 68px;
+    --radius-xl: 28px;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --shadow-soft: 0 12px 40px rgba(34, 39, 75, 0.08);
+    --shadow-card: 0 18px 44px rgba(29, 35, 79, 0.08);
+    --shadow-glow-purple: 0 0 0 1px rgba(166,136,240,0.25), 0 10px 24px rgba(109,63,225,0.18), 0 0 36px rgba(109,63,225,0.18);
+    --shadow-glow-blue: 0 0 0 1px rgba(115,217,255,0.26), 0 10px 28px rgba(27,102,255,0.2), 0 0 42px rgba(74,166,255,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+    background:
+      radial-gradient(circle at top left, rgba(124,92,255,0.10), transparent 26%),
+      radial-gradient(circle at 82% 8%, rgba(74,166,255,0.12), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #fbfbfe 36%, #f5f6fb 100%);
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle at center, rgba(0,0,0,0.45), transparent 78%);
+    opacity: 0.28;
+    z-index: -1;
+  }
+
+  .page-orb {
+    position: fixed;
+    width: 36vw;
+    height: 36vw;
+    min-width: 320px;
+    min-height: 320px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatOrb 14s ease-in-out infinite;
+  }
+  .orb-a { top: -12vw; left: -10vw; background: rgba(124,92,255,0.38); }
+  .orb-b { top: 18vh; right: -12vw; background: rgba(74,166,255,0.28); animation-delay: -4s; }
+  .orb-c { bottom: -10vw; left: 28vw; background: rgba(115,217,255,0.22); animation-delay: -8s; }
+  @keyframes floatOrb {
+    0%, 100% { transform: translate3d(0,0,0) scale(1); }
+    50% { transform: translate3d(0,-18px,0) scale(1.06); }
+  }
+
+  .glass {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  }
+
+  nav {
+    position: fixed;
+    top: 14px;
+    left: 24px;
+    right: 24px;
+    z-index: 100;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px 0 18px;
+    border-radius: 22px;
+  }
+  .nav-shell {
+    background: rgba(255,255,255,0.74);
+    border: 1px solid rgba(255,255,255,0.66);
+    box-shadow: 0 16px 40px rgba(23, 29, 61, 0.08);
+    backdrop-filter: blur(18px);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-img {
+    width: 40px; height: 40px; border-radius: 12px; object-fit: contain;
+    box-shadow: 0 8px 18px rgba(109,63,225,0.16);
+    background: rgba(255,255,255,0.72);
+  }
+  .nav-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .nav-links { display: flex; align-items: center; gap: 12px; }
+  nav a {
+    color: rgba(15,20,25,0.76);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: color .2s ease, background .25s ease, transform .25s ease;
+  }
+  nav a:hover {
+    color: var(--purple-2);
+    background: rgba(109,63,225,0.08);
+    transform: translateY(-1px);
+  }
+
+  .hero {
+    position: relative;
+    padding: 124px 24px 48px;
+    text-align: center;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .hero-panel {
+    position: relative;
+    padding: 42px 32px 28px;
+    border-radius: 34px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.62));
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow: 0 24px 70px rgba(30, 35, 70, 0.08);
+    backdrop-filter: blur(20px);
+  }
+  .hero-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(124,92,255,0.18), rgba(74,166,255,0.16));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.86);
+    border: 1px solid rgba(124,92,255,0.14);
+    color: rgba(15,20,25,0.7);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 24px rgba(29,35,79,0.05);
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan-1), var(--purple-1));
+    box-shadow: 0 0 12px rgba(74,166,255,0.45);
+  }
+  .hero-brand {
+    font-size: clamp(52px, 10vw, 84px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    margin-bottom: 12px;
+    background: linear-gradient(180deg, #8f79ff 0%, #6D3FE1 52%, #3f57ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 10px 24px rgba(109,63,225,0.14);
+  }
+  .bounce-letter { display: inline-block; animation: letterBounce 3s ease-in-out infinite; }
+  @keyframes letterBounce {
+    0%, 85%, 100% { transform: translateY(0); }
+    90% { transform: translateY(-12px); }
+    95% { transform: translateY(-4px); }
+  }
+  .hero h1 {
+    font-size: clamp(30px, 4.2vw, 54px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    max-width: 860px;
+    margin: 0 auto 18px;
+  }
+  .hero h1 .headline-shimmer {
+    background: linear-gradient(120deg, rgba(15,20,25,1) 0%, rgba(15,20,25,1) 45%, rgba(124,92,255,0.82) 58%, rgba(15,20,25,1) 74%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: headlineShimmer 8s linear infinite;
+  }
+  @keyframes headlineShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -40% 0; }
+  }
+  .hero-authors { color: rgba(0,0,0,0.54); font-size: 14px; line-height: 1.65; margin-bottom: 4px; }
+  .hero-affil { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .hero-corr { color: rgba(0,0,0,0.42); font-size: 13px; margin-bottom: 26px; }
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .btn,
+  .explore-btn,
+  .modal-try-btn {
+    --btn-bg: linear-gradient(180deg, rgba(45,49,61,0.96), rgba(17,20,28,0.98));
+    --btn-fg: #fff;
+    --btn-shadow: 0 12px 22px rgba(14,18,28,0.18);
+    --glow-a: rgba(255,255,255,0.44);
+    --glow-b: rgba(166,136,240,0.55);
+    --glow-c: rgba(115,217,255,0.46);
+    --glow-shadow: 0 12px 30px rgba(109,63,225,0.18), 0 0 40px rgba(74,166,255,0.16);
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--btn-fg);
+    border: 1px solid rgba(255,255,255,0.16);
+    background: var(--btn-bg);
+    box-shadow: var(--btn-shadow);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, filter .28s ease, background .28s ease;
+    overflow: visible;
+  }
+  .btn svg, .explore-btn svg, .modal-try-btn svg {
+    width: 16px; height: 16px; flex-shrink: 0;
+    transform: translateX(0);
+    transition: transform .28s ease;
+  }
+  .btn::before,
+  .explore-btn::before,
+  .modal-try-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 1.6px;
+    background: linear-gradient(135deg, var(--glow-a), var(--glow-b), var(--glow-c), var(--glow-a));
+    background-size: 240% 240%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: glowBorder 4.4s linear infinite;
+    animation-delay: var(--glow-delay, 0s);
+    opacity: 0.95;
+    pointer-events: none;
+  }
+  .btn::after,
+  .explore-btn::after,
+  .modal-try-btn::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 18% 50%, rgba(255,255,255,0.22), transparent 28%),
+      radial-gradient(circle at 85% 46%, rgba(115,217,255,0.2), transparent 30%),
+      radial-gradient(circle at 50% 50%, rgba(124,92,255,0.28), transparent 56%);
+    filter: blur(16px);
+    z-index: -2;
+    opacity: 0.78;
+    animation: glowPulse 3.6s ease-in-out infinite;
+    animation-delay: var(--glow-delay, 0s);
+    pointer-events: none;
+  }
+  .btn:hover,
+  .explore-btn:hover,
+  .modal-try-btn:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: var(--glow-shadow), 0 16px 30px rgba(19,26,43,0.18);
+    filter: saturate(1.05);
+  }
+  .btn:hover svg,
+  .explore-btn:hover svg,
+  .modal-try-btn:hover svg { transform: translateX(1px); }
+  .btn:active,
+  .explore-btn:active,
+  .modal-try-btn:active { transform: translateY(0); }
+
+  .btn-primary,
+  .btn-glow,
+  .modal-try-btn {
+    --btn-bg: linear-gradient(180deg, #835dff 0%, #6D3FE1 44%, #5437d8 100%);
+    --btn-shadow: 0 12px 24px rgba(109,63,225,0.26);
+    --glow-b: rgba(177,153,255,0.8);
+    --glow-c: rgba(115,217,255,0.6);
+    --glow-shadow: var(--shadow-glow-purple);
+  }
+  .btn-dark {
+    --btn-bg: linear-gradient(180deg, rgba(42,46,58,0.96), rgba(19,22,31,0.98));
+    --glow-b: rgba(143,121,255,0.38);
+    --glow-c: rgba(115,217,255,0.3);
+  }
+  .btn-blue,
+  .explore-btn {
+    --btn-bg: linear-gradient(180deg, #26548d 0%, #173c6e 46%, #0f2a52 100%);
+    --btn-shadow: 0 12px 26px rgba(14,49,99,0.24);
+    --glow-b: rgba(98,163,255,0.84);
+    --glow-c: rgba(115,217,255,0.74);
+    --glow-shadow: var(--shadow-glow-blue);
+  }
+
+  .btn-row .btn:nth-child(1) { --glow-delay: 0s; }
+  .btn-row .btn:nth-child(2) { --glow-delay: .18s; }
+  .btn-row .btn:nth-child(3) { --glow-delay: .36s; }
+  .explore-btn { --glow-delay: .28s; }
+  .modal-try-btn { --glow-delay: .48s; }
+
+  @keyframes glowBorder {
+    0% { background-position: 0% 50%; opacity: .88; }
+    50% { background-position: 100% 50%; opacity: 1; }
+    100% { background-position: 0% 50%; opacity: .88; }
+  }
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(0.985); opacity: 0.42; }
+    50% { transform: scale(1.03); opacity: 0.9; }
+  }
+
+  .hero-figure,
+  .section-figure,
+  .results-card,
+  .showcase-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(247,248,252,0.9));
+    border: 1px solid rgba(255,255,255,0.76);
+    box-shadow: var(--shadow-card);
+  }
+  .hero-figure::before,
+  .section-figure::before,
+  .results-card::before,
+  .showcase-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(124,92,255,0.14), rgba(74,166,255,0.12));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .hero-figure { width: 100%; max-width: 960px; margin: 0 auto; }
+  .hero-figure img,
+  .section-figure img { display: block; width: 100%; height: auto; }
+  .hero-caption {
+    text-align: center;
+    color: rgba(0,0,0,0.42);
+    font-size: 13px;
+    margin-top: 12px;
+    padding-bottom: 4px;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #04060c;
+  }
+  .video-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease, opacity .35s ease, filter .35s ease;
+  }
+  .video-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.28));
+    pointer-events: none;
+  }
+  .video-container:hover .video-cover {
+    opacity: 0.92;
+    transform: scale(1.02);
+    filter: saturate(1.08);
+  }
+  .video-play-btn {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform .28s ease, filter .28s ease;
+    filter: drop-shadow(0 16px 26px rgba(0,0,0,0.32));
+  }
+  .video-container:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  .video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+  }
+
+  .showcase-band {
+    position: relative;
+    padding: 72px 24px;
+    overflow: hidden;
+  }
+  .showcase-band::before {
+    content: '';
+    position: absolute;
+    inset: 16px 24px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(244,246,251,0.9));
+    box-shadow: 0 22px 60px rgba(27, 33, 70, 0.06);
+    border: 1px solid rgba(255,255,255,0.72);
+    z-index: 0;
+  }
+  .showcase-inner { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; }
+  .showcase-title {
+    text-align: center;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .showcase-subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(0,0,0,0.48);
+    margin-bottom: 34px;
+  }
+  .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .showcase-card { background: #02050c; }
+  .showcase-card .video-container { border-radius: 0; }
+  .showcase-card-label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(10,14,24,0.55);
+    backdrop-filter: blur(14px);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(255,255,255,0.16);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .divider {
+    max-width: 1040px;
+    margin: 0 auto;
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(109,63,225,0.18), rgba(74,166,255,0.16), transparent);
+  }
+
+  section {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+  section h2 {
+    text-align: center;
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 800;
+    color: #071C42;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+  .body-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.72;
+    color: rgba(15,20,25,0.92);
+    margin-bottom: 26px;
+  }
+  .section-figure { margin-bottom: 6px; }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(109,63,225,0.12);
+    margin-bottom: 22px;
+    padding-bottom: 8px;
+  }
+  .tab {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(15,20,25,0.68);
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    transition: all .24s ease;
+    background: rgba(109,63,225,0.05);
+    box-shadow: inset 0 0 0 1px rgba(109,63,225,0.05);
+  }
+  .tab.active {
+    color: #fff;
+    background: linear-gradient(180deg, #7b59ff, #6337df);
+    box-shadow: 0 10px 22px rgba(109,63,225,0.24);
+  }
+  .tab:hover:not(.active) {
+    color: var(--purple-2);
+    background: rgba(109,63,225,0.08);
+  }
+  .results-card { padding: 22px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .explore-band {
+    position: relative;
+    padding: 132px 24px 108px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .explore-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('assets/images/background.png') center bottom / cover no-repeat;
+    transform: scale(1.02);
+  }
+  .explore-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(247,247,251,1) 0%, rgba(247,247,251,0.1) 24%, rgba(11,21,38,0.14) 100%),
+      radial-gradient(circle at 50% 28%, rgba(115,217,255,0.14), transparent 26%);
+  }
+  .explore-band::after {
+    content: '';
+    position: absolute;
+    inset: auto 50% 24px;
+    width: min(780px, calc(100% - 48px));
+    height: 200px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(74,166,255,0.16), transparent 62%);
+    filter: blur(34px);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .explore-shell {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 34px 24px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(8,15,30,0.22), rgba(8,15,30,0.34));
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+  }
+  .explore-band h2 {
+    color: #fff;
+    font-size: clamp(34px, 5vw, 58px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+  .explore-band p {
+    color: rgba(255,255,255,0.74);
+    font-size: 16px;
+    margin-bottom: 36px;
+  }
+  .explore-btn {
+    padding: 14px 38px;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .sidebar-toc {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    background: rgba(109,63,225,0.8);
+    color: #fff;
+    border-radius: 18px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: -4px 12px 30px rgba(109,63,225,0.22);
+    backdrop-filter: blur(16px);
+  }
+  .sidebar-toc a {
+    color: rgba(255,255,255,0.58);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 9px;
+    border-radius: 10px;
+    transition: all .2s ease;
+    white-space: nowrap;
+  }
+  .sidebar-toc a:hover { color: #fff; background: rgba(255,255,255,0.12); }
+  .sidebar-toc a.active {
+    color: #6D3FE1;
+    background: rgba(255,255,255,0.95);
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(7, 11, 18, 0.48);
+    backdrop-filter: blur(10px) saturate(1.1);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    position: relative;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    border-radius: 28px;
+    padding: 42px 34px 34px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(249,249,253,0.9));
+    border: 1px solid rgba(255,255,255,0.74);
+    box-shadow: 0 28px 70px rgba(9, 16, 28, 0.24);
+    animation: modalIn .28s cubic-bezier(.2,.8,.2,1);
+    overflow: hidden;
+  }
+  .modal-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top center, rgba(124,92,255,0.14), transparent 34%);
+    pointer-events: none;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(.94) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(15,20,25,0.08);
+    background: rgba(255,255,255,0.86);
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .modal-close:hover { background: #fff; transform: rotate(90deg); }
+  .modal-logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    object-fit: contain;
+    margin: 0 auto 22px;
+    display: block;
+    box-shadow: 0 12px 24px rgba(109,63,225,0.16);
+    background: rgba(255,255,255,0.85);
+  }
+  .modal-hint {
+    font-size: 15px;
+    color: rgba(0,0,0,0.54);
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+  .modal-code-box {
+    position: relative;
+    background: linear-gradient(180deg, #fbf9ff, #f3efff);
+    border: 1px solid rgba(124,92,255,0.22);
+    border-radius: 20px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 10px 24px rgba(109,63,225,0.08);
+  }
+  .modal-code-box::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(124,92,255,0.28), rgba(115,217,255,0.24));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .modal-code-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8a72e7;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 8px;
+  }
+  .modal-code-value {
+    font-size: clamp(28px, 5vw, 34px);
+    font-weight: 700;
+    color: #6D3FE1;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .modal-try-btn {
+    padding: 13px 36px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  footer {
+    text-align: center;
+    padding: 42px 24px 50px;
+    color: rgba(0,0,0,0.36);
+    font-size: 13px;
+    border-top: 1px solid rgba(109,63,225,0.08);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { left: 14px; right: 14px; top: 12px; }
+    .hero-panel { padding: 34px 18px 22px; border-radius: 28px; }
+    .showcase-band::before { inset: 12px 14px; }
+    .showcase-grid { grid-template-columns: 1fr; }
+    .sidebar-toc { display: none; }
+  }
+  @media (max-width: 700px) {
+    :root { --nav-h: 60px; }
+    nav { padding: 0 14px; }
+    .nav-logo-text { font-size: 24px; }
+    .nav-links a { padding: 8px 10px; font-size: 12px; }
+    .hero { padding-top: 108px; }
+    .hero-authors { font-size: 13px; }
+    section { padding: 52px 20px; }
+    section h2 { font-size: 28px; }
+    .body-text { font-size: 17px; }
+    .tabs { gap: 8px; }
+    .tab { font-size: 12px; padding: 9px 12px; }
+    .explore-shell { padding: 28px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-orb orb-a"></div>
+<div class="page-orb orb-b"></div>
+<div class="page-orb orb-c"></div>
+
+<nav class="nav-shell">
+  <div class="nav-logo">
+    <img src="assets/images/logo.png" alt="Pask Logo" class="nav-logo-img" />
+    <div class="nav-logo-text">Pask</div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About Us</a>
+  </div>
+</nav>
+
+<div class="sidebar-toc" id="sidebar-toc">
+  <a href="#hero-top" data-section="hero-top">Home</a>
+  <a href="#sec-meetings" data-section="sec-meetings">Meetings</a>
+  <a href="#sec-learning" data-section="sec-learning">Learning</a>
+  <a href="#sec-abstract" data-section="sec-abstract">Abstract</a>
+  <a href="#sec-ddmmpas" data-section="sec-ddmmpas">DD-MM-PAS</a>
+  <a href="#sec-intentflow" data-section="sec-intentflow">IntentFlow</a>
+  <a href="#sec-memory" data-section="sec-memory">Memory</a>
+  <a href="#sec-pas" data-section="sec-pas">PAS</a>
+  <a href="#sec-results" data-section="sec-results">Results</a>
+  <a href="#sec-explore" data-section="sec-explore">Explore</a>
+</div>
+
+<div class="hero reveal" id="hero-top">
+  <div class="hero-panel">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Intent-aware proactive agents</div>
+    <div class="hero-brand">
+      <span class="bounce-letter" style="animation-delay:0s">P</span><span class="bounce-letter" style="animation-delay:.08s">a</span><span class="bounce-letter" style="animation-delay:.16s">s</span><span class="bounce-letter" style="animation-delay:.24s">k</span>
+    </div>
+    <h1><span class="headline-shimmer">Toward Intent-Aware Proactive Agents</span><br />with Long-Term Memory</h1>
+    <p class="hero-authors">
+      Zhifei Xie<sup>2†</sup>, Zongzheng Hu<sup>1</sup>, Fangda Ye<sup>3</sup>, Xin Zhang<sup>1</sup>, Haobo Chai<sup>1</sup>,
+      Zihang Liu<sup>3</sup>, Pengcheng Wu<sup>2</sup>, Guibin Zhang<sup>3</sup>, Yue Liao<sup>3</sup>, Xiaobin Hu<sup>3‡</sup>,
+      Deheng Ye<sup>2‡</sup>, Chunyan Miao<sup>2‡</sup>, Shuicheng Yan<sup>3‡</sup>
+    </p>
+    <p class="hero-affil"><sup>1</sup>Pask-Core &nbsp; <sup>2</sup>NTU &nbsp; <sup>3</sup>NUS</p>
+    <p class="hero-corr">†Project leader &nbsp;&nbsp; ‡Corresponding authors</p>
+
+    <div class="btn-row">
+      <a class="btn btn-dark" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        arXiv
+      </a>
+      <a class="btn btn-dark" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Code
+      </a>
+      <a class="btn btn-primary btn-glow" href="javascript:void(0)" onclick="openModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Try Pask
+      </a>
+    </div>
+
+    <div class="hero-figure reveal">
+      <img src="assets/images/figure1.png" alt="System Overview of Pask" />
+    </div>
+    <p class="hero-caption">Overview of the Pask system.</p>
+
+    <div class="video-container reveal" style="margin-top: 24px;" onclick="loadVideo(this, 'MAIN_VIDEO_ID')">
+      <img src="assets/images/video-cover.jpg" alt="Demo Video" class="video-cover" />
+      <div class="video-play-btn"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
+    </div>
+    <p class="hero-caption">Demo video of the Pask system.</p>
+  </div>
+</div>
+
+<div class="showcase-band reveal" id="sec-meetings">
+  <div class="showcase-inner">
+    <div class="showcase-title">Pask in Meetings</div>
+    <div class="showcase-subtitle">Proactive assistance during real-time conversations</div>
+    <div class="showcase-grid">
+      <div class="showcase-card reveal">
+        <div class="showcase-card-label">Meeting Summary</div>
+        <div class="video-container" onclick="loadVideo(this, 'MEETING_VIDEO_1_ID')">
+          <img src="assets/images/meeting-video1-cover.jpg" alt="Meeting Demo 1" class="video-cover" />
+          <div class="video-play-btn"><svg viewBox="0 0 68 48" width="56" height="40"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
+        </div>
+      </div>
+      <div class="showcase-card reveal">
+        <div class="showcase-card-label">Action Items</div>
+        <div class="video-container" onclick="loadVideo(this, 'MEETING_VIDEO_2_ID')">
+          <img src="assets/images/meeting-video2-cover.jpg" alt="Meeting Demo 2" class="video-cover" />
+          <div class="video-play-btn"><svg viewBox="0 0 68 48" width="56" height="40"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="showcase-band reveal" id="sec-learning">
+  <div class="showcase-inner">
+    <div class="showcase-title">Pask in Learning</div>
+    <div class="showcase-subtitle">Personalized support for continuous knowledge building</div>
+    <div class="showcase-grid">
+      <div class="showcase-card reveal">
+        <div class="showcase-card-label">Concept Guidance</div>
+        <div class="video-container" onclick="loadVideo(this, 'LEARNING_VIDEO_1_ID')">
+          <img src="assets/images/learning-video1-cover.jpg" alt="Learning Demo 1" class="video-cover" />
+          <div class="video-play-btn"><svg viewBox="0 0 68 48" width="56" height="40"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
+        </div>
+      </div>
+      <div class="showcase-card reveal">
+        <div class="showcase-card-label">Adaptive Review</div>
+        <div class="video-container" onclick="loadVideo(this, 'LEARNING_VIDEO_2_ID')">
+          <img src="assets/images/learning-video2-cover.jpg" alt="Learning Demo 2" class="video-cover" />
+          <div class="video-play-btn"><svg viewBox="0 0 68 48" width="56" height="40"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-abstract">
+  <h2>Abstract</h2>
+  <p class="body-text">
+    <strong>Proactivity is a core expectation for AGI.</strong> Prior work remains largely confined to laboratory settings, leaving a clear gap in real-world proactive agent: depth, complexity, ambiguity, precision and real-time constraints. We study this setting, where useful intervention requires <strong>inferring latent needs from ongoing context</strong> and grounding actions in <strong>evolving user memory</strong> under latency and long-horizon constraints. We first propose <strong>DD-MM-PAS</strong> (Demand Detection, Memory Modeling, Proactive Agent System) as a general paradigm for streaming proactive AI agent. We instantiate this paradigm in <strong>Pask</strong>, with streaming <strong>IntentFlow</strong> model for DD, a hybrid memory (workspace, user, global) for long-term MM, <strong>PAS</strong> infra framework and introduce how these components form a closed loop. We also introduce <strong>LatentNeeds-Bench</strong>, a real-world benchmark built from user-consented data and refined through thousands of rounds of human editing. Experiments show that IntentFlow matches leading <strong>Gemini3-Flash</strong> models under latency constraints, while identifying deeper user intent.
+  </p>
+</section>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-ddmmpas">
+  <h2>DD-MM-PAS: A Paradigm for Proactive AI</h2>
+  <p class="body-text">
+    DD-MM-PAS is a general framework for proactive AI — systems that initiate help rather than wait to be asked. It breaks proactive intelligence into three coupled functions: detecting what a user needs, remembering who the user is over time, and actually executing useful assistance. The central idea is that true proactivity can't come from any single component; it requires demand inference, personalized memory, and execution ability working together as one coherent loop.
+  </p>
+  <div class="section-figure reveal"><img src="assets/images/figure2-intentflow.png" alt="DD-MM-PAS Paradigm" /></div>
+</section>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-intentflow">
+  <h2>Pask-DD: IntentFlow</h2>
+  <p class="body-text">
+    IntentFlow is the model responsible for figuring out, in real time, whether a user needs help and what kind. As information streams in — a conversation, a lecture, a meeting — IntentFlow reads it continuously and outputs one of three decisions: stay silent, respond immediately with a quick answer, or invoke the memory system and then give deeper personalized assistance. It's trained first on 100k synthetic examples to learn intent patterns, then fine-tuned with real user data using reinforcement learning to sharpen its judgment on genuine human needs.
+  </p>
+  <div class="section-figure reveal"><img src="assets/images/figure3-memory.png" alt="IntentFlow Architecture" /></div>
+</section>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-memory">
+  <h2>Pask-MM: Self-Evolving Hierarchical Memory</h2>
+  <p class="body-text">
+    The memory system gives Pask a sense of who it's working with across time. It operates at three levels: a compact user profile injected directly into every interaction (fast, always-on), a session-level working memory that tracks what's happening right now, and a large long-term store retrieved via search when deeper context is needed. These layers evolve automatically after each session — updating the user profile, resolving contradictions, and compressing old records — so the system gradually builds a richer understanding of each person without growing unwieldy.
+  </p>
+</section>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-pas">
+  <h2>Pask-PAS: System Implementation</h2>
+  <p class="body-text">
+    PAS is the system backbone that turns a detected need into actual help. It connects frontend devices (glasses, phone, computer) through a server layer to a full suite of AI models and tools — web search, code execution, vision, speech recognition, and more. While IntentFlow decides that a user needs something, PAS handles doing it: coordinating multiple processes in parallel, managing memory read/writes, and maintaining a stable always-on runtime so proactive assistance can work reliably in the real world, not just in controlled demos.
+  </p>
+  <div class="section-figure reveal"><img src="assets/images/figure4-pas.png" alt="PAS System Architecture" /></div>
+</section>
+
+<hr class="divider" />
+
+<section class="reveal" id="sec-results">
+  <h2>Results</h2>
+  <div class="results-card">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(0)">Main Results</button>
+      <button class="tab" onclick="switchTab(1)">Demand Type</button>
+      <button class="tab" onclick="switchTab(2)">Multi-Turn</button>
+      <button class="tab" onclick="switchTab(3)">Latency</button>
+      <button class="tab" onclick="switchTab(4)">Memory &amp; User Study</button>
+    </div>
+    <div class="tab-content active" id="tab-0">
+      <div class="section-figure" style="margin-bottom:16px;"><img src="assets/images/experiments-table1.png" alt="Table 1" /></div>
+      <p class="body-text" style="margin-bottom:0;">Language models remain weak at proactive demand detection — even with encouraging prompts, many models score below 40 on demand turns. IntentFlow achieves the best balanced accuracy of 84.2, outperforming Gemini-3-Flash by 3.4 points and GPT-5-Mini by 7.0. Critically, it maintains strong performance on both demand (83.1) and non-demand (85.2) turns, making it the most balanced model overall.</p>
+    </div>
+    <div class="tab-content" id="tab-1">
+      <div class="section-figure" style="margin-bottom:16px;"><img src="assets/images/experiments-table2.png" alt="Table 2" /></div>
+      <p class="body-text" style="margin-bottom:0;">Proprietary frontier models remain stronger in high-value work and learning scenarios — Gemini-3-Flash attains the highest scores in both Work (91.5) and Learning (89.5). IntentFlow is more competitive in daily scenarios than in work settings (82.3 vs. Gemini-3-Flash's 74.9), and slightly surpasses Gemini-3-Flash on average (83.7 vs. 83.1).</p>
+    </div>
+    <div class="tab-content" id="tab-2">
+      <div class="section-figure" style="margin-bottom:16px;"><img src="assets/images/experiments-table3.png" alt="Table 3" /></div>
+      <p class="body-text" style="margin-bottom:0;">In multi-turn interactions up to 60 turns (~30 minutes), large models often exhibit a warm-up effect. Smaller models degrade more sharply: Gemini-2.5-Flash-Lite drops by 74.1% on demand accuracy. IntentFlow maintains the most stable trajectory with Pask-MM, declining only 5.0% from 86.1 to 81.8.</p>
+    </div>
+    <div class="tab-content" id="tab-3">
+      <div class="section-figure" style="margin-bottom:16px;"><img src="assets/images/experiments-table4.png" alt="Table 4" /></div>
+      <p class="body-text" style="margin-bottom:0;">IntentFlow is consistently the fastest model, with per-turn latency around 1.3–1.5 seconds — attributed to its smaller number of activated parameters. By comparison, GPT-5-Mini averages 7–8s, Gemini-3-Flash 3–4s, and Qwen3.5-Flash over 15s.</p>
+    </div>
+    <div class="tab-content" id="tab-4">
+      <div class="section-figure" style="margin-bottom:16px;"><img src="assets/images/experiments-table5.png" alt="Figure 9" /></div>
+      <p class="body-text" style="margin-bottom:0;">Long-term memory contributes through three channels: user background memory, knowledge memory via M<sub>global</sub>, and preference memory. A quiz experiment shows Pask improves average scores from ~6 to ~7–7.5 after a 5-minute learning task.</p>
+    </div>
+  </div>
+</section>
+
+<div class="explore-band reveal" id="sec-explore">
+  <div class="explore-bg"></div>
+  <div class="explore-shell">
+    <h2>Explore Pask</h2>
+    <p>Experience proactive AI that understands your intent before you ask.</p>
+    <a class="explore-btn btn-blue" href="javascript:void(0)" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Get Started
+    </a>
+  </div>
+</div>
+
+<footer id="about">
+  &copy; 2025 Pask &mdash; Pask-Core &middot; NUS &middot; NTU &middot; Tencent
+</footer>
+
+<div class="modal-overlay" id="pask-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <img src="assets/images/logo.png" alt="Pask Logo" class="modal-logo-img" />
+    <p class="modal-hint">Remember your spell (invitation code)</p>
+    <div class="modal-code-box">
+      <div class="modal-code-label">Invitation Code</div>
+      <div class="modal-code-value">I love pask</div>
+    </div>
+    <a class="modal-try-btn" href="https://pask.ai" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Try Pask
+    </a>
+  </div>
+</div>
+
+<script>
+function loadVideo(c, id) {
+  c.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+}
+
+function switchTab(i) {
+  document.querySelectorAll('.tab').forEach(function(t, j) { t.classList.toggle('active', j === i); });
+  document.querySelectorAll('.tab-content').forEach(function(c, j) { c.classList.toggle('active', j === i); });
+}
+
+function openModal() {
+  document.getElementById('pask-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('pask-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+(function() {
+  var links = document.querySelectorAll('.sidebar-toc a[data-section]');
+  var sections = [];
+  links.forEach(function(a) {
+    var el = document.getElementById(a.getAttribute('data-section'));
+    if (el) sections.push({ el: el, link: a });
+  });
+  function update() {
+    var scrollY = window.scrollY + window.innerHeight * 0.35;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].el.offsetTop <= scrollY) current = sections[i];
+    }
+    links.forEach(function(a) { a.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+(function() {
+  var revealEls = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach(function(el, index) {
+    el.style.transitionDelay = Math.min(index * 35, 280) + 'ms';
+    observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
