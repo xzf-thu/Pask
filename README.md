@@ -33,24 +33,6 @@ In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detectio
   </a>
 </div>
 
-## Demo Videos
-
-### System Overview
-
-https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/main.mp4
-
-### Pask in Meetings
-
-https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo3-meeting.mp4
-
-*Proactive assistance during real-time conversations — meeting summaries, action items, and follow-up reminders.*
-
-### Pask in Learning
-
-https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo1-learning.mp4
-
-*Personalized support for continuous knowledge building — concept guidance, adaptive review, and knowledge gap detection.*
-
 
 ## Demo Videos
 <div align="center">
