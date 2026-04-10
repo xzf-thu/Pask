@@ -25,32 +25,37 @@ In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detectio
 </div>
 
 
+## Brief Intro
 
-## Paper introduction
 <div align="center">
-  <video src="docs/assets/videos/main.mp4" width="100%" controls></video>
+  <a href="https://www.youtube.com/watch?v=8hzfKYroO8k">
+    <img src="https://img.youtube.com/vi/8hzfKYroO8k/maxresdefault.jpg" alt="Pask System Overview" width="80%">
+  </a>
 </div>
 
 ## Demo Videos
-
-
 <div align="center">
-Pask in Meetings
-  <video src="docs/assets/videos/demo3-meeting.mp4" width="100%" controls></video>
+Pask in meetings.
 </div>
-
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=u-vsvtCs3ik">
+    <img src="https://img.youtube.com/vi/u-vsvtCs3ik/maxresdefault.jpg" alt="Pask in Meetings" width="80%">
+  </a>
+</div>
 Proactive assistance during real-time conversations — meeting summaries, action items, and follow-up reminders.
 
-
 <div align="center">
-Pask in Learning
-  <video src="docs/assets/videos/demo1-learning.mp4" width="100%" controls></video>
+
+---
+
+Pask in Learning.
+</div>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=42qH6ddIib0">
+    <img src="https://img.youtube.com/vi/42qH6ddIib0/maxresdefault.jpg" alt="Pask in Learning" width="80%">
+  </a>
 </div>
 Personalized support for continuous knowledge building — concept guidance, adaptive review, and knowledge gap detection.
-
-## News
-- [2026.04] 🚀 Paper released: [Pask: Toward Intent-Aware Proactive Agents with Long-Term Memory](https://arxiv.org/pdf/2604.08000)
-- [2026.04] 📚 LatentNeeds-Bench benchmark released
 
 
 
