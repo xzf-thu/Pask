@@ -2,14 +2,19 @@
 <img src="assets/logo.jpg" alt="Pask Logo" width="90%">
 </div>
 <div align="center">
-<a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>  
-<a href='https://xzf-thu.github.io/Pask/'><img src='https://img.shields.io/badge/GitHub-Pask-black'></a>  
+<a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>
+<a href='https://xzf-thu.github.io/Pask/'><img src='https://img.shields.io/badge/Project-Page-blue'></a>
 <a href='https://x.com/XieZhifei14110'><img src='https://img.shields.io/badge/X-@XieZhifei14110-000000'></a>
-<a href='http://discord.gg/GQq35RaxSM'><img src='https://img.shields.io/badge/Discord-Join%20Us-5865F2'></a>  
-</div>
+<a href='http://discord.gg/GQq35RaxSM'><img src='https://img.shields.io/badge/Discord-Join%20Us-5865F2'></a>
 
 <div align="center">
 <a href='docs/assets/images/wechat.jpg'><img src='https://img.shields.io/badge/WeChat-Join%20Group-07C160'></a> <a href='https://pask.ai'><img src='https://img.shields.io/badge/Try%20Pask-pask.ai-007BFF'></a>
+</div>
+
+<div align="center">
+<a href='https://volstorage.pask.ai/PaskClient-0.4.2.dmg'><img src='https://img.shields.io/badge/Download-Mac-000000?logo=apple'></a>
+<a href='https://volstorage.pask.ai/Pask-Setup-0.4.2.exe'><img src='https://img.shields.io/badge/Download-Windows-0078D4?logo=windows'></a>
+<a href='https://volstorage.pask.ai/pask-1.0.3.apk'><img src='https://img.shields.io/badge/Download-Android-3DDC84?logo=android&logoColor=white'></a>
 </div>
 
 
