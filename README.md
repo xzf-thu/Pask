@@ -25,12 +25,26 @@ In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detectio
 </div>
 
 
-## Demo
 
+## Paper introduction
 <div align="center">
-[![Pask Demo Video](docs/assets/images/video-cover.jpg)](https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo.mp4)
+  <video src="https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/main.mp4" width="100%" controls></video>
 </div>
 
+## Demo Videos
+
+Pask in Meetings
+<div align="center">
+  <video src="https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo3-meeting.mp4" width="100%" controls></video>
+</div>
+
+Proactive assistance during real-time conversations — meeting summaries, action items, and follow-up reminders.
+
+Pask in Learning
+<div align="center">
+  <video src="https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo1-learning.mp4" width="100%" controls></video>
+</div>
+Personalized support for continuous knowledge building — concept guidance, adaptive review, and knowledge gap detection.
 
 ## News
 - [2026.04] 🚀 Paper released: [Pask: Toward Intent-Aware Proactive Agents with Long-Term Memory](https://arxiv.org/pdf/2604.08000)
