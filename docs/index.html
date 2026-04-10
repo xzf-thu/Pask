@@ -251,8 +251,8 @@
   </div>
   <p class="hero-caption">Overview of the Pask system.</p>
 
-  <div class="video-container" style="margin-top: 24px;" onclick="loadVideo(this, 'assets/videos/demo1-learning.mp4')">
-    <img src="assets/images/video-cover.jpg" alt="Demo Video" class="video-cover" />
+  <div class="video-container" style="margin-top: 24px;" onclick="loadVideo(this, 'assets/videos/main.mp4')">
+    <img src="assets/images/main_cover.jpg" alt="Demo Video" class="video-cover" />
     <div class="video-play-btn"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7s-.7-4.7-2.8-6.8C60.7-2 57.2-2 55.6-2.2 46.5-3 34-3 34-3s-12.5 0-21.6.8C10.8-2 7.3-2 4.3.9 2.2 3 1.5 7.7 1.5 7.7S.8 13.3.8 18.8v5.2c0 5.5.7 11.1.7 11.1s.7 4.7 2.8 6.8c3 3.1 6.9 3 8.7 3.3 6.3.6 26.8.6 26.8.6s12.5 0 21.6-.8c1.6-.2 5.1-.2 8.1-3.1 2.1-2.1 2.8-6.8 2.8-6.8s.7-5.5.7-11.1v-5.2c0-5.5-.7-11.1-.7-11.1z" fill="rgba(0,0,0,0.75)"/><path d="M27 33V13l18.5 10L27 33z" fill="#fff"/></svg></div>
   </div>
   <p class="hero-caption">Demo video of the Pask system.</p>
@@ -435,7 +435,10 @@
 
 <script>
 function loadVideo(c, videoSrc) {
-  c.innerHTML = '<video src="' + videoSrc + '" autoplay controls style="width:100%;height:100%;object-fit:cover;"></video>';
+  // 移除 onclick 事件，防止干扰视频控制
+  c.onclick = null;
+  c.style.cursor = 'default';
+  c.innerHTML = '<video src="' + videoSrc + '" autoplay controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>';
 }
 function switchTab(i) {
   document.querySelectorAll('.tab').forEach(function(t, j) { t.classList.toggle('active', j === i); });
