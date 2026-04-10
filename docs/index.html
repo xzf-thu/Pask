@@ -21,14 +21,11 @@
   /* ── HERO ── */
   .hero { padding: 84px 24px 32px; text-align: center; max-width: 860px; margin: 0 auto; }
   .hero-brand { font-size: 52px; font-weight: 700; color: #6D3FE1; line-height: 1; margin-bottom: 10px; }
-  .bounce-letter {
-    display: inline-block;
-    animation: letterBounce 3s ease-in-out infinite;
-  }
+  .bounce-letter { display: inline-block; animation: letterBounce 3s ease-in-out infinite; }
   @keyframes letterBounce {
     0%, 85%, 100% { transform: translateY(0); }
-    90%            { transform: translateY(-12px); }
-    95%            { transform: translateY(-4px); }
+    90% { transform: translateY(-12px); }
+    95% { transform: translateY(-4px); }
   }
   .hero h1 { font-size: 28px; font-weight: 700; line-height: 1.25; margin-bottom: 14px; }
   .hero-authors { color: rgba(0,0,0,0.5); font-size: 14px; line-height: 1.6; margin-bottom: 4px; }
@@ -39,6 +36,10 @@
   .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all .2s; background: #333; color: #fff; border: none; }
   .btn:hover { background: #111; }
   .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* WeChat 绿色按钮 */
+  .btn-wechat { background: #07C160; }
+  .btn-wechat:hover { background: #06AD56; }
 
   .btn-glow {
     position: relative;
@@ -103,118 +104,49 @@
   .tab-content.active { display: block; }
 
   /* ── EXPLORE PASK CTA ── */
-  .explore-band {
-    position: relative; padding: 120px 24px 100px; text-align: center; overflow: hidden;
-  }
-  .explore-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background: url('assets/images/background.png') center bottom / cover no-repeat;
-  }
-  .explore-bg::before {
-    content: ''; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 33%);
-  }
+  .explore-band { position: relative; padding: 120px 24px 100px; text-align: center; overflow: hidden; }
+  .explore-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, #6D3FE1 0%, #409EFF 100%); }
+  .explore-bg::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 33%); }
   .explore-band h2 { color: #fff; font-size: 42px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 2; }
   .explore-band p { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 36px; position: relative; z-index: 2; }
-  .explore-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 36px; border-radius: 28px;
-    font-size: 17px; font-weight: 600;
-    background: #1a3a6b; color: #fff; border: 2px solid transparent;
-    cursor: pointer; text-decoration: none;
-    transition: transform .2s, box-shadow .2s;
-    position: relative; z-index: 2;
-  }
-  .explore-btn::before {
-    content: ''; position: absolute; inset: -3px; border-radius: 32px;
-    border: 2px solid #409EFF;
-    animation: btnGlow 1s ease-in-out infinite;
+  .explore-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 36px; border-radius: 28px; font-size: 17px; font-weight: 600; background: #1a3a6b; color: #fff; border: 2px solid transparent; cursor: pointer; text-decoration: none; transition: transform .2s, box-shadow .2s; position: relative; z-index: 2; }
+  .explore-btn::before { content: ''; position: absolute; inset: -3px; border-radius: 32px; border: 2px solid #409EFF; animation: btnGlow 1s ease-in-out infinite; }
+  @keyframes btnGlow {
+    0%, 100% { opacity: 0.15; box-shadow: 0 0 6px 1px rgba(64,158,255,0.2); }
+    50% { opacity: 1; box-shadow: 0 0 18px 4px rgba(64,158,255,0.6); }
   }
   .explore-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); background: #0f2a52; }
 
   /* ── SIDEBAR TOC ── */
-  .sidebar-toc {
-    position: fixed; right: 0; top: 50%; transform: translateY(-50%);
-    z-index: 99; background: #6D3FE1; color: #fff;
-    border-radius: 10px 0 0 10px; padding: 14px 12px;
-    display: flex; flex-direction: column; gap: 2px;
-    box-shadow: -2px 0 16px rgba(109,63,225,0.25);
-  }
-  .sidebar-toc a {
-    color: rgba(255,255,255,0.55); text-decoration: none;
-    font-size: 11px; font-weight: 500; padding: 4px 8px;
-    border-radius: 5px; transition: all .2s; white-space: nowrap;
-  }
+  .sidebar-toc { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 99; background: #6D3FE1; color: #fff; border-radius: 10px 0 0 10px; padding: 14px 12px; display: flex; flex-direction: column; gap: 2px; box-shadow: -2px 0 16px rgba(109,63,225,0.25); }
+  .sidebar-toc a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 11px; font-weight: 500; padding: 4px 8px; border-radius: 5px; transition: all .2s; white-space: nowrap; }
   .sidebar-toc a:hover { color: #fff; background: rgba(255,255,255,0.1); }
-  .sidebar-toc a.active {
-    color: #6D3FE1; background: rgba(255,255,255,0.9);
-    font-size: 12px; font-weight: 700;
-    padding: 6px 10px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
-  }
+  .sidebar-toc a.active { color: #6D3FE1; background: rgba(255,255,255,0.9); font-size: 12px; font-weight: 700; padding: 6px 10px; box-shadow: 0 1px 6px rgba(0,0,0,0.12); }
 
   /* ── MODAL ── */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.5); backdrop-filter: blur(6px);
-    justify-content: center; align-items: center;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); justify-content: center; align-items: center; }
   .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: #fff; border-radius: 16px;
-    padding: 40px 36px; max-width: 420px; width: 90%;
-    position: relative; text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    animation: modalIn .25s ease-out;
-  }
+  .modal-box { background: #fff; border-radius: 16px; padding: 40px 36px; max-width: 420px; width: 90%; position: relative; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.25); animation: modalIn .25s ease-out; }
   @keyframes modalIn {
     from { opacity: 0; transform: scale(0.92) translateY(16px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
-  .modal-close {
-    position: absolute; top: 14px; right: 14px;
-    width: 32px; height: 32px; border-radius: 50%;
-    border: none; background: #f0f0f0; cursor: pointer;
-    font-size: 18px; color: #666; display: flex;
-    align-items: center; justify-content: center; transition: background .2s;
-  }
+  .modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; border: none; background: #f0f0f0; cursor: pointer; font-size: 18px; color: #666; display: flex; align-items: center; justify-content: center; transition: background .2s; }
   .modal-close:hover { background: #ddd; }
-  .modal-logo-img {
-    width: 56px; height: 56px; border-radius: 14px;
-    object-fit: contain; margin: 0 auto 24px; display: block;
-  }
-  .modal-hint {
-    font-size: 15px; color: rgba(0,0,0,0.5); margin-bottom: 20px; line-height: 1.5;
-  }
-  .modal-code-box {
-    background: #F8F5FF; border: 2px dashed #6D3FE1;
-    border-radius: 12px; padding: 20px 24px;
-    margin-bottom: 28px;
-  }
-  .modal-code-label {
-    font-size: 11px; font-weight: 600; color: #a688f0;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    margin-bottom: 8px;
-  }
-  .modal-code-value {
-    font-size: 30px; font-weight: 700; color: #6D3FE1;
-    font-family: 'Poppins', sans-serif; letter-spacing: 1px;
-  }
-  .modal-try-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 36px; border-radius: 24px;
-    font-size: 16px; font-weight: 600;
-    background: #6D3FE1; color: #fff; border: 2px solid transparent;
-    cursor: pointer; text-decoration: none;
-    position: relative; transition: background .2s;
-  }
-  .modal-try-btn::before {
-    content: ''; position: absolute; inset: -3px; border-radius: 28px;
-    border: 2px solid #a688f0;
-    animation: btnGlowPurple 1s ease-in-out infinite;
-  }
+  .modal-logo-img { width: 56px; height: 56px; border-radius: 14px; object-fit: contain; margin: 0 auto 24px; display: block; }
+  .modal-hint { font-size: 15px; color: rgba(0,0,0,0.5); margin-bottom: 20px; line-height: 1.5; }
+  .modal-code-box { background: #F8F5FF; border: 2px dashed #6D3FE1; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }
+  .modal-code-label { font-size: 11px; font-weight: 600; color: #a688f0; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .modal-code-value { font-size: 30px; font-weight: 700; color: #6D3FE1; font-family: 'Poppins', sans-serif; letter-spacing: 1px; }
+  .modal-try-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 36px; border-radius: 24px; font-size: 16px; font-weight: 600; background: #6D3FE1; color: #fff; border: 2px solid transparent; cursor: pointer; text-decoration: none; position: relative; transition: background .2s; }
+  .modal-try-btn::before { content: ''; position: absolute; inset: -3px; border-radius: 28px; border: 2px solid #a688f0; animation: btnGlowPurple 1s ease-in-out infinite; }
   .modal-try-btn:hover { background: #5a2ed0; }
   .modal-try-btn svg { width: 18px; height: 18px; }
+
+  /* WeChat Modal */
+  .wechat-modal-box { max-width: 360px; padding: 30px; }
+  .wechat-modal-box img { width: 100%; border-radius: 12px; }
+  .wechat-modal-title { font-size: 18px; font-weight: 600; color: #07C160; margin-bottom: 16px; }
 
   /* ── FOOTER ── */
   footer { text-align: center; padding: 36px 24px; color: rgba(0,0,0,0.35); font-size: 13px; border-top: 1px solid #DCDFE6; }
@@ -275,13 +207,20 @@
   <p class="hero-corr">†Project leader &nbsp;&nbsp; ‡Corresponding authors</p>
 
   <div class="btn-row">
-    <a class="btn" href="#">
+    <!-- arXiv 按钮 - 添加链接 -->
+    <a class="btn" href="https://arxiv.org/pdf/2604.08000" target="_blank">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       arXiv
     </a>
-    <a class="btn" href="#">
+    <!-- Code 按钮 - 添加链接 -->
+    <a class="btn" href="https://github.com/xzf-thu/Pask" target="_blank">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
       Code
+    </a>
+    <!-- 新增 WeChat 绿色按钮 -->
+    <a class="btn btn-wechat" href="javascript:void(0)" onclick="openWechatModal()">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+      WeChat
     </a>
     <a class="btn btn-glow" href="javascript:void(0)" onclick="openModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -444,12 +383,13 @@
     Get Started
   </a>
 </div>
+
 <!-- ════════ FOOTER ════════ -->
 <footer id="about">
   &copy; 2025 Pask &mdash; Pask-Core &middot; NUS &middot; NTU &middot; Tencent
 </footer>
 
-<!-- ════════ MODAL ════════ -->
+<!-- ════════ MODAL - Try Pask ════════ -->
 <div class="modal-overlay" id="pask-modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -463,6 +403,15 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Try Pask
     </a>
+  </div>
+</div>
+
+<!-- ════════ MODAL - WeChat ════════ -->
+<div class="modal-overlay" id="wechat-modal" onclick="if(event.target===this)closeWechatModal()">
+  <div class="modal-box wechat-modal-box">
+    <button class="modal-close" onclick="closeWechatModal()">&times;</button>
+    <div class="wechat-modal-title">扫码加入微信群</div>
+    <img src="assets/images/wechat.jpg" alt="WeChat QR Code" />
   </div>
 </div>
 
@@ -482,7 +431,20 @@ function closeModal() {
   document.getElementById('pask-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+function openWechatModal() {
+  document.getElementById('wechat-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeWechatModal() {
+  document.getElementById('wechat-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { 
+  if (e.key === 'Escape') {
+    closeModal();
+    closeWechatModal();
+  }
+});
 
 (function() {
   var links = document.querySelectorAll('.sidebar-toc a[data-section]');
