@@ -4,9 +4,12 @@
 <div align="center">
 <a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>  
 <a href='https://xzf-thu.github.io/Pask/'><img src='https://img.shields.io/badge/GitHub-Pask-black'></a>  
-<a href='https://x.com/XieZhifei14110'><img src='https://img.shields.io/badge/X-@XieZhifei14110-000000'></a>  
+<a href='https://x.com/XieZhifei14110'><img src='https://img.shields.io/badge/X-@XieZhifei14110-000000'></a>
 <a href='http://discord.gg/GQq35RaxSM'><img src='https://img.shields.io/badge/Discord-Join%20Us-5865F2'></a>  
-<a href='docs/assets/images/wechat.jpg'><img src='https://img.shields.io/badge/WeChat-Join%20Group-07C160'></a>
+</div>
+
+<div align="center">
+<a href='docs/assets/images/wechat.jpg'><img src='https://img.shields.io/badge/WeChat-Join%20Group-07C160'></a> <a href='https://pask.ai'><img src='https://img.shields.io/badge/Try%20Pask-pask.ai-007BFF'></a>
 </div>
 
 
