@@ -1,15 +1,6 @@
 <div align="center">
 <img src="assets/logo.png" alt="Pask Logo" width="100%">
 </div>
-
-> What would a truly proactive AI — one worthy of AGI — look like? 
-
-- **Precision** → we train IntentFlow, a dedicated model for real-time latent intent classification
-- **Low Latency** → we design IntentFlow with a streaming architecture for per-turn online inference
-- **Long-term Modeling** → we propose a hierarchical memory module for self-evolving user modeling across sessions
-
-In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detection, Memory Modeling, and Proactive Agent System, for building low-latency, online proactive AI. We instantiate each component and show how they connect into a closed loop.
-
 <div align="center">
 <a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>  
 <a href='https://pask.ai'><img src='https://img.shields.io/badge/Site-Pask.ai-6D3FE1'></a>  
@@ -19,11 +10,21 @@ In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detectio
 <a href='docs/assets/images/wechat.jpg'><img src='https://img.shields.io/badge/WeChat-Join%20Group-07C160'></a>
 </div>
 
+
+> What would a truly proactive AI — one worthy of AGI — look like? 
+
+- **Precision** → we train IntentFlow, a dedicated model for real-time latent intent classification
+- **Low Latency** → we design IntentFlow with a streaming architecture for per-turn online inference
+- **Long-term Modeling** → we propose a hierarchical memory module for self-evolving user modeling across sessions
+
+In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detection, Memory Modeling, and Proactive Agent System, for building low-latency, online proactive AI. We instantiate each component and show how they connect into a closed loop.
+
+
+
 <div align="center">
   <img src="docs/assets/images/figure1.png" alt="Pask System Overview" width="100%">
 </div>
 
----
 
 ## Demo
 
