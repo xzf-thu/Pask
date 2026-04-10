@@ -2,13 +2,17 @@
 <img src="assets/logo.png" alt="Pask Logo" width="100%">
 </div>
 
-> What would a truly proactive AI — one worthy of AGI — look like? 
+---
 
-- **Precision** → we train IntentFlow, a dedicated model for real-time latent intent classification
-- **Low Latency** → we design IntentFlow with a streaming architecture for per-turn online inference
-- **Long-term Modeling** → we propose a hierarchical memory module for self-evolving user modeling across sessions
+Proactive AI — systems that *initiate* help rather than wait to be asked — has been a long-standing goal in human-computer interaction. Yet most deployed assistants remain fundamentally reactive: they respond only when explicitly prompted, requiring users to already know what to ask and when to ask it.
 
-In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detection, Memory Modeling, and Proactive Agent System, for building low-latency, online proactive AI. We instantiate each component and show how they connect into a closed loop.
+**Pask** addresses this gap. Real-world proactivity is hard: a useful proactive agent must detect **latent user needs** from unstructured, ongoing context; model **who the user is** across sessions; and deliver grounded, timely responses under strict latency constraints. Prior work on proactive agents largely sidesteps these challenges — operating in constrained lab settings, with simplified intent taxonomies, short-horizon memory, or offline evaluation. We study the full problem.
+
+Concretely, Pask combines three capabilities:
+
+- **Real-time intent detection** — streaming inference over live conversation to classify whether and how to intervene
+- **Long-term memory** — a hierarchical memory system (user profile, working memory, long-term store) that accumulates and retrieves context across sessions  
+- **Proactive action** — grounded execution through web search, code, vision, and speech, triggered without user instruction
 
 <div align="center">
 <a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>  
@@ -28,15 +32,16 @@ In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detectio
 ## Demo
 
 <div align="center">
+
 [![Pask Demo Video](docs/assets/images/video-cover.jpg)](https://github.com/xzf-thu/Pask/raw/main/docs/assets/videos/demo.mp4)
+
 </div>
 
+---
 
 ## News
-- [2025.04] 🚀 Paper released: [Pask: Toward Intent-Aware Proactive Agents with Long-Term Memory](https://arxiv.org/pdf/2604.08000)
-- [2025.04] 📚 LatentNeeds-Bench benchmark released
-- [2025.04] 🎯 IntentFlow model weights released
 
+---
 
 ## LatentNeeds-Bench
 
@@ -103,11 +108,13 @@ Proactivity is a core expectation for AGI. Prior work remains largely confined t
 
 We propose **DD-MM-PAS** (Demand Detection, Memory Modeling, Proactive Agent System) as a general paradigm for streaming proactive AI. We instantiate this in **Pask**, with the streaming **IntentFlow** model for demand detection, a hierarchical memory system (workspace, user, global) for long-term modeling, and the **PAS** infrastructure that closes the loop from detection to action.
 
+---
 
 ### DD-MM-PAS
 
 DD-MM-PAS decomposes proactive intelligence into three coupled functions: detecting what a user needs (DD), remembering who the user is over time (MM), and executing useful assistance (PAS). Each component can be studied and improved independently, while the full system operates as a closed loop.
 
+---
 
 ### Pask-DD: IntentFlow
 
@@ -117,6 +124,7 @@ DD-MM-PAS decomposes proactive intelligence into three coupled functions: detect
 
 IntentFlow reads a live conversation continuously and outputs one of three decisions at each turn: stay silent, respond immediately, or query memory before responding. The model is trained to make this judgment under streaming constraints, with outputs calibrated to minimize both false positives (unnecessary interruptions) and false negatives (missed needs).
 
+---
 
 ### Pask-MM: Hierarchical Memory
 
@@ -132,6 +140,7 @@ The memory system operates at three levels:
 
 The system updates continuously across sessions, allowing Pask to personalize responses based on past interactions without manual configuration.
 
+---
 
 ### Pask-PAS: System Architecture
 
@@ -141,6 +150,7 @@ The system updates continuously across sessions, allowing Pask to personalize re
 
 PAS connects frontend devices (glasses, phone, desktop) through a server layer to the full model and tool suite — web search, code execution, vision, and speech recognition. Detected intents are routed to the appropriate tool and returned to the user within the latency budget.
 
+---
 
 ## Citation
 
