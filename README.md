@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/logo.jpg" alt="Pask Logo" width="100%">
+<img src="assets/logo.jpg" alt="Pask Logo" width="90%">
 </div>
 <div align="center">
 <a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>  
