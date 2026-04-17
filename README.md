@@ -1,6 +1,11 @@
 <div align="center">
 <img src="assets/logo.jpg" alt="Pask Logo" width="90%">
+
+We made Pask easy to try — just download the `.exe`, `.dmg`, or `.apk` for Windows, macOS, or Android. You’ll get free live subtitles in 41 languages, real-time summaries, and memory, and we cover all the API costs. If you like it, please give us a Star ⭐
 </div>
+
+
+
 <div align="center">
 <a href='https://arxiv.org/pdf/2604.08000'><img src='https://img.shields.io/badge/arXiv-2604.08000-b31b1b.svg'></a>
 <a href='https://xzf-thu.github.io/Pask/'><img src='https://img.shields.io/badge/Project-Page-blue'></a>
@@ -17,6 +22,8 @@
 <a href='https://volstorage.pask.ai/Pask-Setup-0.4.2.exe'><img src='https://img.shields.io/badge/Download-Windows-0078D4?logo=windows'></a>
 <a href='https://volstorage.pask.ai/pask-1.0.3.apk'><img src='https://img.shields.io/badge/Download-Android-3DDC84?logo=android&logoColor=white'></a>
 </div>
+
+---
 
 > **Q: Proactivity is a core expectation for AGI. What should a truly proactive agent look like?**
 
