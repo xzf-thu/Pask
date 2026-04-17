@@ -37,11 +37,12 @@ Concretely, Pask combines three capabilities:
 
 </div>
 
----
 
 ## News
+- [2025.04] 🚀 Paper released: [Pask: Toward Intent-Aware Proactive Agents with Long-Term Memory](https://arxiv.org/pdf/2604.08000)
+- [2025.04] 📚 LatentNeeds-Bench benchmark released
+- [2025.04] 🎯 IntentFlow model weights released
 
----
 
 ## LatentNeeds-Bench
 

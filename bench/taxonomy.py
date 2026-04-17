@@ -11,6 +11,8 @@ Demand types:
   Ins (Insight):     implicit, subjective, interpretive demands
 """
 
+
+
 # ------------------------------------------------------------------
 # Category / subcategory definitions (data-driven)
 # ------------------------------------------------------------------

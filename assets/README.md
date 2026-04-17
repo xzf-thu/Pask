@@ -99,3 +99,5 @@ We use a **two-round LLM-as-judge** setup (GPT-4.1-Mini):
 2. **Round 2** (if needed): Judge gets the full conversation history and makes a final decision.
 
 The primary metric is **balanced accuracy** — average of demand-turn recall and non-demand-turn precision — so a model can't game the score by just staying silent or always responding.
+
+

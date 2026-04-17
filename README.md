@@ -18,16 +18,21 @@
 <a href='https://volstorage.pask.ai/pask-1.0.3.apk'><img src='https://img.shields.io/badge/Download-Android-3DDC84?logo=android&logoColor=white'></a>
 </div>
 
+> **Q: Proactivity is a core expectation for AGI. What should a truly proactive agent look like?**
 
-> Proactivity is a core expectation for AGI. What should a truly proactive agent look like?
+Academic work often studies agents in clean task settings: goals are explicit, inputs are controlled, and evaluation is straightforward. Real-world proactivity is much harder. People speak over each other. Context shifts fast. Scenarios range from learning, to sales, to legal consultation. More importantly, intent itself is messy, hidden, and constantly changing. If we want proactive AI to be more than a toy, it must have **robust, real-time, deep intent understanding**, together with a complex **multi-process agentic execution** loop. And over time, these interactions must be distilled into personal memory, so the system can become a true **soul knower**.
 
-- **Precision** → we train IntentFlow, a dedicated model for real-time latent intent classification
-- **Low Latency** → we design IntentFlow with a streaming architecture for per-turn online inference
-- **Long-term Modeling** → we propose a hierarchical memory module for self-evolving user modeling across sessions
+We model this capability through three core challenges:
 
-In this paper, we introduce **DD-MM-PAS**, a general paradigm of Demand Detection, Memory Modeling, and Proactive Agent System, for building low-latency, online proactive AI. We instantiate each component and show how they connect into a closed loop.
+> - **Precision** → we train IntentFlow, a dedicated model for real-time latent intent classification
+> - **Super Low Latency** → we design IntentFlow with a streaming architecture for per-turn online inference
+> - **Long-term Modeling** → we propose a hierarchical memory module for self-evolving user modeling across sessions
 
+This leads to a key insight: proactive AI cannot be achieved by stronger agents alone; it requires innovation at both the model layer and the agent layer.
 
+In this paper, we instantiate this view in Pask.
+
+We introduce **DD-MM-PAS**, a general paradigm of Demand Detection, Memory Modeling, and Proactive Agent System, for building low-latency, online proactive AI. It integrates model-level innovations in intent understanding and user modeling with agent-level innovations in proactive decision-making and action, forming a closed loop for real-world proactive systems.
 
 <div align="center">
   <img src="docs/assets/images/figure1.png" alt="Pask System Overview" width="100%">
