@@ -1,7 +1,9 @@
 <div align="center">
 <img src="assets/logo.jpg" alt="Pask Logo" width="90%">
 
-We made Pask easy to try — just download the `.exe`, `.dmg`, or `.apk` for Windows, macOS, or Android. You’ll get free live subtitles in 41 languages, real-time summaries, and memory, and we cover all the API costs. If you like it, please give us a Star ⭐
+We made Pask easy to try — just download the `.exe`, `.dmg`, or `.apk` for Windows, macOS, or Android. You’ll get free live subtitles in **41** languages, real-time summaries, and memory dashboard, and we cover all the API costs(Google ASR & Gemini-3-flash). 
+
+If you like it, please give us a Star~~~ memeda ⭐
 </div>
 
 
